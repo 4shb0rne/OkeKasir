@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id("userid");
-            $table->string('username');
-            $table->string('useremail')->unique();
-            $table->string('userpassword');
-            $table->date('userdob');
-            $table->rememberToken();
+        Schema::create('restock_detail', function (Blueprint $table) {
+            $table->id("restockid")->references('restockid')->on('restock_header')->onUpdate('cascade')->onDelete('cascade');;
+            $table->integer("itemid");
+            $table->integer("restockquantity");
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('restock_detail');
     }
 };

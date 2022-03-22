@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id("userid");
-            $table->string('username');
-            $table->string('useremail')->unique();
-            $table->string('userpassword');
-            $table->date('userdob');
-            $table->rememberToken();
+        Schema::create('restock_header', function (Blueprint $table) {
+            $table->id("restockid");
+            $table->integer("staffid");
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('restock_header');
     }
 };

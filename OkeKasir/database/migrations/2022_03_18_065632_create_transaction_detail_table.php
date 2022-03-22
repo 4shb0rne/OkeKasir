@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id("userid");
-            $table->string('username');
-            $table->string('useremail')->unique();
-            $table->string('userpassword');
-            $table->date('userdob');
-            $table->rememberToken();
+        Schema::create('transaction_detail', function (Blueprint $table) {
+            $table->id("transactionid")->references('transactionid')->on('transaction_header')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer("itemid")->references('itemid')->on('item')->onUpdate('cascade')->onDelete('cascade');;
+            $table->integer("transactionquantity");
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('transaction_detail');
     }
 };
