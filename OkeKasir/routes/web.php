@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,9 @@ Route::get('/', function () {
     return view('layouts/master');
 });
 
-Route::get('/', function() {
-    
-});
+Route::get('/login', [UserController::class, 'loginpage']);
+Route::get('/register', [UserController::class, 'registerpage']);
+Route::get('/additemcategory', [ItemController::class, 'openitemcategory']);
+Route::post('/additemcategory', [ItemController::class, 'additemcategory']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);
