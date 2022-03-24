@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('item__categories', function (Blueprint $table) {
-            $table->id("itemcategoryid");
+        Schema::create('item_categories', function (Blueprint $table) {
+            $table->id();
             $table->string("itemcategoryname");
             $table->timestamps();
         });

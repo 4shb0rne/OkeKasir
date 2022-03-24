@@ -5,8 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item_Category extends Model
+class ItemCategories extends Model
 {
     use HasFactory;
     protected $fillable = ['itemcategoryname']; 
+    function item()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

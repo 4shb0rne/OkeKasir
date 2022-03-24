@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transaction_detail', function (Blueprint $table) {
-            $table->id("transactionid")->references('transactionid')->on('transaction_header')->onUpdate('cascade')->onDelete('cascade');
+            $table->id()->references('transactionid')->on('transaction_header')->onUpdate('cascade')->onDelete('cascade');
             $table->integer("itemid")->references('itemid')->on('item')->onUpdate('cascade')->onDelete('cascade');;
             $table->integer("transactionquantity");
             $table->timestamps();

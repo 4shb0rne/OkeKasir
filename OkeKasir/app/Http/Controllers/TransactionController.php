@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    //
+    function opentransaction()
+    {
+        return view('transaksi');
+    }
 }

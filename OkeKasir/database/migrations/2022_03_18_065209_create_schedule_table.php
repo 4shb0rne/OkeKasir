@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('schedule', function (Blueprint $table) {
-            $table->id("scheduleid");
+            $table->id();
             $table->integer("userid")->references('users')->on('transaction_header')->onUpdate('cascade')->onDelete('cascade');
             $table->string("scheduleTitle");
             $table->string("scheduledescription");

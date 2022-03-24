@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('cart_tables', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('useremail')->unique();
-            $table->string('password');
-            $table->date('userdob');
-            $table->rememberToken();
+            $table->integer('itemid')->references('itemid')->on('item')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('userid')->references('userid')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('cart_tables');
     }
 };

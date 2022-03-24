@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('item', function (Blueprint $table) {
-            $table->id("itemid");
-            $table->integer("itemcategoryid")->references('itemcategoryid')->on('item_categories')->onUpdate('cascade')->onDelete('cascade');
+        Schema::create('items', function (Blueprint $table) {
+            $table->id();
+            $table->integer("itemcategoryid")->references('id')->on('item_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string("itemname");
             $table->string("itemdescription");
             $table->integer("brutoprice");

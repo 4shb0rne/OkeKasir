@@ -18,12 +18,17 @@ active
         </div>
         <!-- isi -->
         <div class="row p-2 text-center">
+            @foreach($itemcategories as $itemcategory)
             <div class="col-6">
-                Celana
+                {{ $itemcategory->itemcategoryname }}
             </div>
             <div class="col-6">
-                <button type="button" class="btn btn-danger btn-sm "><i class="fas fa-trash-alt"></i></button>
+                <form action="{{url('deleteitemcategory/'.$itemcategory->id)}}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm "><i class="fas fa-trash-alt"></i></button>
+                </form>
             </div>
+            @endforeach
         </div>
         <hr class="text-secondary">
       </table>

@@ -11,12 +11,11 @@ active
             <div class="">
                 <select class="custom-select bg-dark text-white">
                     <option selected>Kategori</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @foreach($itemcategories as $itemcategory)
+                        <option value="{{ $itemcategory->id }}">{{ $itemcategory->itemcategoryname }}</option>
+                    @endforeach
                 </select>
             </div>
-            
             <div class="">
                 <nav class="navbar">
                     <form class="form-inline">
@@ -60,30 +59,32 @@ active
             </div>
         </div>
         <!-- isi -->
+        @foreach($items as $item)
         <div class="row p-2">
             <div class="col-1">
                 <img src="assets/profile_picture.jpeg" alt="" width="50px">
             </div>
             <div class="col-2">
-                felicia sania
+                {{ $item->itemname }}
             </div>
             <div class="col-2">
-                IT001
+                {{ $item->id }}
             </div>
             <div class="col-2">
-               Celana Panjang
+               {{ $item->item_categories->itemcategoryname }}
             </div>
             <div class="col-1">
-                1.000.000
+                {{ $item->nettoprice }}
             </div>
             <div class="col-2 text-center">
-                100
+                {{ $item->itemquantity }}
             </div>
             <div class="col-2 text-center">
                 <a href="/editmenu" class="text-muted"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button></a>
                 <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
             </div>
         </div>
+        @endforeach
         <hr class="text-secondary">
       </table>
 </div>

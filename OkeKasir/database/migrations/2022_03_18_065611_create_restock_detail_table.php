@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('restock_detail', function (Blueprint $table) {
-            $table->id("restockid")->references('restockid')->on('restock_header')->onUpdate('cascade')->onDelete('cascade');;
+            $table->id()->references('restockid')->on('restock_header')->onUpdate('cascade')->onDelete('cascade');;
             $table->integer("itemid");
             $table->integer("restockquantity");
             $table->timestamps();
