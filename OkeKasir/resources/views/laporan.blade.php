@@ -16,7 +16,6 @@ active
                     <option value="3">Tahun</option>
                 </select>
             </div>
-            
             <div class="">
                 <nav class="navbar">
                     <form class="form-inline">

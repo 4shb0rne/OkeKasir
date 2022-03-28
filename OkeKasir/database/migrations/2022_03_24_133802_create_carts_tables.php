@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('cart_tables', function (Blueprint $table) {
             $table->id();
-            $table->integer('itemid')->references('itemid')->on('item')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('userid')->references('userid')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('itemid')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('customername');
             $table->integer('quantity');
             $table->timestamps();
         });

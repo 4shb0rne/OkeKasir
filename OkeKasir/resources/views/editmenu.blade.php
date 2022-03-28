@@ -10,19 +10,19 @@ active
     <form method="post" >
         <div class="d-flex flex-column my-3">
             <label for="nama_produk">Nama Produk</label>
-            <input type="text" name="nama_produk" id="nama_produk" placeholder="Masukkan nama produk" class="p-2 my-2">
+            <input type="text" name="nama_produk" id="nama_produk" placeholder="Masukkan nama produk" class="p-2 my-2" value="{{ $item->itemname }}">
         </div>
         <div class="d-flex flex-column my-3">
             <label for="deskripsi">Deskripsi</label>
-            <input type="text" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi" class="p-2 my-2">
+            <input type="text" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi" class="p-2 my-2" value="{{ $item->itemdescription }}">
         </div>
         <div class="d-flex flex-column my-3">
             <label for="netto">Harga Netto</label>
-            <input type="number" name="netto" id="netto" placeholder="Masukkan harga bersih" class="p-2 my-2">
+            <input type="number" name="netto" id="netto" placeholder="Masukkan harga bersih" class="p-2 my-2" value="{{ $item->nettoprice }}">
         </div>
         <div class="d-flex flex-column my-3">
             <label for="bruto">Harga Bruto</label>
-            <input type="number" name="bruto" id="bruto" placeholder="Masukkan harga kotor" class="p-2 my-2">
+            <input type="number" name="bruto" id="bruto" placeholder="Masukkan harga kotor" class="p-2 my-2" value="{{ $item->brutoprice }}">
         </div>
         <div class="d-flex flex-column my-3">
             <label for="bruto">Kategori</label>

@@ -80,9 +80,17 @@
                                 {{-- <span>Nama Aplikasi</span> --}}
                             </center>
                         </div>
+                        
                         @if(Auth::user())
                         <div class="col-4">
-                          <a href="" class="d-flex flex-row-reverse">Logout</a>
+                          <a href="/logout" class="d-flex flex-row-reverse">Logout</a>
+                        </div>
+                        @else
+                        <div class="col-2">
+                          <a href="/login" class="d-flex flex-row-reverse">Login</a>
+                        </div>
+                        <div class="col-2">
+                          <a href="/register" class="d-flex flex-row-reverse">Register</a>
                         </div>
                         @endif
                     </div>

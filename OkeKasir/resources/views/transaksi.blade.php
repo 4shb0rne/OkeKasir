@@ -11,9 +11,9 @@ active
             <div class="">
                 <select class="custom-select bg-dark text-white">
                     <option selected>Kategori</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @foreach($itemcategories as $itemcategory)
+                        <option value="{{ $itemcategory->id }}">{{ $itemcategory->itemcategoryname }}</option>
+                    @endforeach
                 </select>
             </div>
             
@@ -27,10 +27,12 @@ active
                     </form>
                   </nav>
             </div>
+            <form action="/addtransaksi" method="POST">
+                @csrf
             <div class="d-flex align-items-center flex justify-content-end">
                 <a href="/save" class="text-muted"><i class="fas fa-bookmark me-3 fa-2x text-dark"></i></a>
                 <a href="/cart" class="text-muted"><i class="fas fa-cart-arrow-down me-3 fa-2x text-dark"></i></a>
-                <button type="button" class="btn btn-success">ADD</button>
+                <a href="/addtransaksi"><button type="submit" class="btn btn-success">ADD</button></a>
             </div>
         </div>
     </div>
@@ -57,57 +59,37 @@ active
             </div>
         </div>
         <!-- isi -->
+        
         <div class="row p-2">
+            @foreach($items as $item)
             <div class="col-1">
                 <img src="assets/profile_picture.jpeg" alt="" width="50px">
             </div>
             <div class="col-3">
-                felicia sania
+                {{ $item->itemname }}
             </div>
             <div class="col-2">
-                IT001
+                {{ $item->id }}
             </div>
             <div class="col-2">
-               Celana
+                {{ $item->item_categories->itemcategoryname }}
             </div>
             <div class="col-2">
-                150.000
-            </div>
-            <div class="col-2">
-                <div class="input-group d-flex justify-content-around">
-                    <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
-                    <input type="number" step="1" max="10" value="0" name="quantity" class="quantity-field border-0 text-center w-25">
-                    <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
-                 </div>
-            </div>
-        </div>
-        <hr class="text-secondary">
-        <div class="row p-2">
-            <div class="col-1">
-                <img src="assets/profile_picture.jpeg" alt="" width="50px">
-            </div>
-            <div class="col-3">
-                Baju Kotak-kotak
-            </div>
-            <div class="col-2">
-                IT002
-            </div>
-            <div class="col-2">
-               Baju
-            </div>
-            <div class="col-2">
-                200.000
+                {{ $item->itemprice }}
             </div>
             <div class="col-2">
                 <div class="input-group d-flex justify-content-around">
                     <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
-                    <input type="number" step="1" max="10" value="0" name="quantity" class="quantity-field border-0 text-center w-25">
+                    <input type="hidden" value="{{ $item->id }}" name="itemid[]">
+                    <input type="number" step="1" max="10" value="0" name="qty[]" class="quantity-field border-0 text-center w-25">
                     <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
                  </div>
             </div>
+            @endforeach
         </div>
         <hr class="text-secondary">
       </table>
+      </form>
       
 </div>
 <script>

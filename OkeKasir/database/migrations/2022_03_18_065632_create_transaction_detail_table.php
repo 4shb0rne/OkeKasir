@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_detail', function (Blueprint $table) {
-            $table->id()->references('transactionid')->on('transaction_header')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer("itemid")->references('itemid')->on('item')->onUpdate('cascade')->onDelete('cascade');;
+        Schema::create('transaction_details', function (Blueprint $table) {
+            $table->id();
+            $table->integer("itemid")->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
+            $table->string("customername");
             $table->integer("transactionquantity");
             $table->timestamps();
         });

@@ -68,6 +68,21 @@ class ItemController extends Controller
         $itemcategory = new ItemCategories();
         $itemcategory->itemcategoryname = $validate['nama_kategori'];
         $itemcategory->save();
-        return redirect('/');
+        return redirect('/menu');
+    }
+    function openedititem($id)
+    {
+        $item = Item::find($id);
+        return view('editmenu', ['item'=>$item]);
+    }
+
+    function edititem(Request $request)
+    {
+
+    }
+    function deleteitem($id)
+    {
+        $item = Item::find($id)->delete();
+        return redirect('/menu');
     }
 }

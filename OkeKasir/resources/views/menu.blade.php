@@ -80,8 +80,11 @@ active
                 {{ $item->itemquantity }}
             </div>
             <div class="col-2 text-center">
-                <a href="/editmenu" class="text-muted"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button></a>
-                <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                <form action="{{url('deleteitem/'.$item->id)}}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <a href="{{url('edititem/'.$item->id)}}" class="text-muted"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button></a>
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                </form>
             </div>
         </div>
         @endforeach

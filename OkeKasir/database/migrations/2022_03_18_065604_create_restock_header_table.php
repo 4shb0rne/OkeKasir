@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restock_header', function (Blueprint $table) {
+        Schema::create('restock_headers', function (Blueprint $table) {
             $table->id();
             $table->integer("staffid");
             $table->timestamps();

@@ -27,13 +27,28 @@ active
                     </form>
                   </nav>
             </div>
+    <form action="/savecart" method="POST" enctype="multipart/form-data">
+        @csrf
             <div class="d-flex align-items-center flex justify-content-end">
                 <a href="/save" class="text-muted"><i class="fas fa-bookmark me-3 fa-2x text-dark"></i></a>
                 <a href="" class="text-muted"><i class="fas fa-cart-arrow-down me-3 fa-2x text-dark"></i></a>
-                <button type="button" class="btn btn-warning me-3">SAVE</button>
+                <button type="submit" class="btn btn-warning me-3">SAVE</button>
                 <button type="button" class="btn btn-success">ADD</button>
             </div>
         </div>
+    </div>
+    
+    <div class="">
+            <div class="form-group row">
+                <label for="staffname" class="col-sm-2 col-form-label">Staff Name</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="staffname" placeholder="staff name" name="staffname">
+                </div>
+                <label for="customername" class="col-sm-2 col-form-label">Customer Name</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="customername" placeholder="customer name" name="customername">
+              </div>
+            </div>
     </div>
     <table class="table">
         <!-- header -->
@@ -61,26 +76,28 @@ active
             </div>
         </div>
         <!-- isi -->
+        @foreach($carts as $cart)
         <div class="row p-2">
             <div class="col-1">
                 <img src="assets/profile_picture.jpeg" alt="" width="50px">
             </div>
             <div class="col-3">
-                felicia sania
+                {{ $cart->item->itemname }}
             </div>
             <div class="col-2">
-                IT001
+                {{ $cart->item->id }}
             </div>
-            <div class="col-1">
-               Celana
+            <div class="col-2">
+                {{ $cart->item->item_categories->itemcategoryname }}
             </div>
-            <div class="col-2 text-center">
-                150.000
+            <div class="col-2">
+                {{ $cart->item->itemprice }}
             </div>
             <div class="col-2">
                 <div class="input-group d-flex justify-content-around">
+                    <input type="hidden" value="{{ $cart->item->id }}" name="itemid[]">
                     <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
-                    <input type="number" step="1" max="10" value="2" name="quantity" class="quantity-field border-0 w-25">
+                    <input type="number" step="1" max="10" value="2" name="qty[]" class="quantity-field border-0 w-25">
                     <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
                  </div>
             </div>
@@ -89,7 +106,9 @@ active
             </div>
         </div>
         <hr class="text-secondary">
+        @endforeach
     </table>
+    </form>
 </div>
 <script>
     function incrementValue(e) {

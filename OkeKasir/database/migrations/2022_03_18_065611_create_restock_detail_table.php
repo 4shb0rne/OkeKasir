@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restock_detail', function (Blueprint $table) {
-            $table->id()->references('restockid')->on('restock_header')->onUpdate('cascade')->onDelete('cascade');;
+        Schema::create('restock_details', function (Blueprint $table) {
+            $table->id()->references('id')->on('restock_header')->onUpdate('cascade')->onDelete('cascade');
             $table->integer("itemid");
             $table->integer("restockquantity");
             $table->timestamps();

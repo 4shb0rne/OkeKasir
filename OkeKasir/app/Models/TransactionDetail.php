@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemCategories extends Model
+class TransactionDetail extends Model
 {
     use HasFactory;
-    protected $fillable = ['itemcategoryname']; 
+    protected $fillable = ['itemid', 'customername', 'transactionquantity'];
+
     public function item()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasOne(Item::class, 'itemid');
     }
 }
