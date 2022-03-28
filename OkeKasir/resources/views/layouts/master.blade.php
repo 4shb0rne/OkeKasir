@@ -21,10 +21,11 @@
 </head>
 <body>
     <div class="wrapper">
+        @if(Auth::user())
         <div id="sidebar">
             <div class="sidebar-header py-4 text-center">
                 <img src="{{asset('assets/profile_picture.jpeg')}}" alt="User avatar" width="100px" class="mx-3 rounded-circle">
-                <h3 class="mt-3">Felicia bau</h3>
+                <h3 class="mt-3">{{ Auth::user()->username }}</h3>
             </div>
             <ul class="text-white list-unstyled components">
                 <li class="@yield('nav-transaksi')">
@@ -65,6 +66,7 @@
               </li>
             </ul>
         </div>
+        @endif
         <div id="content">
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">

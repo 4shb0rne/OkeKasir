@@ -28,6 +28,7 @@ Route::get('/register', [UserController::class, 'registerpage']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::group(['middleware' => 'auth'], function (){
+    Route::get('/logout', [UserController::class, 'logout']);
     //                                  GET
     //Menu
     Route::get('/addkategori', [ItemController::class, 'openaddcategory']);
