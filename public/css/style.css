@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+
+body {
+    font-family: 'poppins', sans-serif;
+}
+.containers {
+    margin: 3rem;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+}
+
+#sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: rgb(53, 53, 53);
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    left: -200px;
+}
+
+#content {
+    width: calc(100% - 200px);
+    min-height: 100vh;
+    max-height: auto;
+    background-color: rgba(202, 202, 202, 0.466);
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* z-index: 1; */
+    transition: all 0.3s;
+}
+
+#content.active {
+    width: 100%;
+}
+.sidebar-header {
+    /* height: 100px;
+    background-color: pink; */
+    color: white;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+#sidebar ul li{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#sidebar ul li.active {
+    background-color: rgba(37, 37, 37, 0.616);
+}
+
+#sidebar ul li:hover {
+    background-color: rgba(37, 37, 37, 0.603);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        left: -200px;
+    }
+    #sidebar.active {
+        left: 0;
+    }
+
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 200px);
+    }
+}
+
+.drowdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: red;
+    min-width: 160px;
+    z-index: 10;
+    padding-bottom: 20px;
+}
+
+.container,.col-4 {
+    padding: 0;
+    margin: 0;
+}
+
+/* dashboard */
+.breadcrumb-item+.breadcrumb-item::before {
+    float: left;
+    padding-right: 0.5rem;
+    color: #6c757d;
+    content: ">";
+}
+
+.breadcrumb {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(202, 202, 202, 0);
+    font-size: 12px;
+}
+
+.fs-60 {
+    font-size: 60px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.bg-black {
+    background-color: rgb(42, 42, 42);
+}
+
+.brt-15 {
+    border-radius: 15px 15px 0px 0px;
+}
+
+.brb-15 {
+    border-radius: 0px 0px 15px 15px;
+}
+
+.brs-15 {
+    border-radius: 15px 0px 0px 15px !important;
+}
+
+.br-15 {
+    border-radius: 15px;
+}
+
+.br-10 {
+    border-radius: 10px;
+}
+
+.btn-sm {
+    font-size: 15px;
+}
+
+.float-right {
+    float: right;
+}
+
+form > div:last-child > button {
+    /* margin-left: auto; */
+}
+
+form > div:last-child > div:nth-child(4):hover {
+    cursor: pointer;
+    background-color: #b6b5b5 !important;
+}
+
+form > div:last-child > div:nth-child(4) {
+    transition: background-color 200ms ease-in-out;
+}
+
+/* Transaksi */
+icon-shape {
+    padding: 2rem;
+    /* display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle; */
+}
+
+.icon-sm {
+    width: 2rem;
+    height: 2rem;
+}
+
+.form-login {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-login .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-login input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-login input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signup {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signup .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signup input[type="username"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signup input[type="email"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signup input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signup input[type="date"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.submitBtn {
+    background-color: rgb(42, 42, 42);
+    color: white;
+}
+.submitBtn:hover {
+    background-color: black;
+    color: white;
+}
