@@ -59,9 +59,8 @@ active
             </div>
         </div>
         <!-- isi -->
-        
+        @foreach($items as $item)
         <div class="row p-2">
-            @foreach($items as $item)
             <div class="col-1">
                 <img src="assets/profile_picture.jpeg" alt="" width="50px">
             </div>
@@ -75,7 +74,7 @@ active
                 {{ $item->item_categories->itemcategoryname }}
             </div>
             <div class="col-2">
-                {{ $item->itemprice }}
+                {{ $item->nettoprice }}
             </div>
             <div class="col-2">
                 <div class="input-group d-flex justify-content-around">
@@ -85,9 +84,9 @@ active
                     <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
                  </div>
             </div>
-            @endforeach
         </div>
         <hr class="text-secondary">
+        @endforeach
       </table>
       </form>
       

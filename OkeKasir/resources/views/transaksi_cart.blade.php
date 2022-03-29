@@ -87,7 +87,7 @@ active
             <div class="col-2">
                 {{ $cart->item->id }}
             </div>
-            <div class="col-2">
+            <div class="col-1">
                 {{ $cart->item->item_categories->itemcategoryname }}
             </div>
             <div class="col-2">

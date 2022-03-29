@@ -17,8 +17,8 @@ active
             </div>
         </div>
         <!-- isi -->
+        @foreach($itemcategories as $itemcategory)
         <div class="row p-2 text-center">
-            @foreach($itemcategories as $itemcategory)
             <div class="col-6">
                 {{ $itemcategory->itemcategoryname }}
             </div>
@@ -28,9 +28,10 @@ active
                     <button type="submit" class="btn btn-danger btn-sm "><i class="fas fa-trash-alt"></i></button>
                 </form>
             </div>
-            @endforeach
+            
         </div>
         <hr class="text-secondary">
+        @endforeach
       </table>
 </div>
 @endsection

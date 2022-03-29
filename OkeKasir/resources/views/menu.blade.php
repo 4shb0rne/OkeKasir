@@ -87,8 +87,8 @@ active
                 </form>
             </div>
         </div>
-        @endforeach
         <hr class="text-secondary">
+        @endforeach
       </table>
 </div>
 @endsection
