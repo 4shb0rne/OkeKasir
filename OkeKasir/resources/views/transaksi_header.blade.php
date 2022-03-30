@@ -19,7 +19,6 @@ active
                 </nav>
             </div>
             <div class="ms-auto">
-                <a href="" class="text-muted"><i class="fas fa-bookmark me-3 fa-2x text-dark"></i></a>
                 <a href="/cart" class="text-muted"><i class="fas fa-cart-arrow-down me-3 fa-2x text-dark"></i></a>
             </div>
         </div>
@@ -44,48 +43,38 @@ active
                 </div>
             </div>
             <!-- isi -->
+            @foreach($transactions as $transaction)
             <div class="row p-2">
                 <div class="col-2">
-                    TD001
+                    TD{{ $transaction->id }}
                 </div>
                 <div class="col-3">
-                    felicia sania
+                    {{ $transaction->customername }}
                 </div>
                 <div class="col-3 text-center">
-                    Vablo
+                    {{ $transaction->staffname }}
                 </div>
                 <div class="col-2">
                     300.000
                 </div>
-                <div class="col-2 text-center">
-                    <a href="/edit"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button></a>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>
+                <div class="col-2 text-center d-flex justify-content-center">
+                    <form action="{{url('deletetransaction/'.$transaction->id)}}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <a href="{{url('cart/'.$transaction->id)}}" class="text-muted"><button type="button" class="btn btn-primary btn-sm me-2"><i class="fas fa-pencil-alt"></i></button></a>
+                        <button type="submit" class="btn btn-danger btn-sm me-2"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                    <form action="{{url('addbill/'.$transaction->id)}}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>
+                    </form>
+                    
+                    {{-- <a href="/edit"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button></a>
+                    <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button> --}}
+                    
                 </div>
             </div>
             <hr class="text-secondary">
-            
-            <!-- ISI KE DUA -->
-            {{-- <div class="row p-2">
-                <div class="col-2">
-                    TD001
-                </div>
-                <div class="col-3">
-                    Otto sania Otto sania Otto sania Otto sania Otto sania Otto sania
-                </div>
-                <div class="col-3 text-center">
-                    Vablo
-                </div>
-                <div class="col-2">
-                    500.000
-                </div>
-                <div class="col-2 text-center">
-                    <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>
-                </div>
-            </div>
-            <hr class="text-secondary"> --}}
+            @endforeach
       </table>
 </div>
 @endsection

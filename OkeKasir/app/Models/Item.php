@@ -18,4 +18,8 @@ class Item extends Model
     {
         return $this->hasMany(CartTables::class);
     }
+    public function transaction_detail()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
 }

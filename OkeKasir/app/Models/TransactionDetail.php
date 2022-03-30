@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionDetail extends Model
 {
     use HasFactory;
-    protected $fillable = ['itemid', 'customername', 'transactionquantity'];
+    protected $fillable = ['transaction_id', 'itemid', 'transactionquantity'];
 
     public function item()
     {
-        return $this->hasOne(Item::class, 'itemid');
+        return $this->belongsTo(Item::class, 'itemid');
+    }
+
+    public function transaction_header()
+    {
+        return $this->belongsTo(TransactionHeader::class, 'transaction_id');
     }
 }

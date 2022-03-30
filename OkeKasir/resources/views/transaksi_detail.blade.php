@@ -27,29 +27,15 @@ active
                     </form>
                   </nav>
             </div>
-    <form action="/savecart" method="POST" enctype="multipart/form-data">
+    <form action="{{url('updatetransaction/'.$items[0]->transaction_id)}}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="d-flex align-items-center flex justify-content-end">
-                <a href="/save" class="text-muted"><i class="fas fa-bookmark me-3 fa-2x text-dark"></i></a>
                 <a href="" class="text-muted"><i class="fas fa-cart-arrow-down me-3 fa-2x text-dark"></i></a>
-                <button type="submit" class="btn btn-warning me-3">SAVE</button>
-                <button type="button" class="btn btn-success">ADD</button>
+                <a href="/updatetransaction"><button type="submit" class="btn btn-warning me-3">SAVE</button></a>
             </div>
         </div>
     </div>
-    
-    <div class="">
-            <div class="form-group row">
-                <label for="staffname" class="col-sm-2 col-form-label">Staff Name</label>
-                <div class="col-sm-4">
-                  <input type="text" class="form-control" id="staffname" placeholder="staff name" name="staffname">
-                </div>
-                <label for="customername" class="col-sm-2 col-form-label">Customer Name</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" id="customername" placeholder="customer name" name="customername">
-              </div>
-            </div>
-    </div>
+
     <table class="table">
         <!-- header -->
         <div class="row bg-dark p-2 text-white font-weight-bold mb-2">
@@ -76,39 +62,45 @@ active
             </div>
         </div>
         <!-- isi -->
-        @foreach($carts as $cart)
+        @foreach($items as $item)
         <div class="row p-2">
             <div class="col-1">
-                <img src="assets/profile_picture.jpeg" alt="" width="50px">
+                <img src="{{asset('assets/profile_picture.jpeg')}}" alt="" width="50px">
             </div>
             <div class="col-3">
-                {{ $cart->item->itemname }}
+                {{ $item->item->itemname }}
             </div>
             <div class="col-2">
-                {{ $cart->item->id }}
+                {{ $item->item->id }}
             </div>
             <div class="col-1">
-                {{ $cart->item->item_categories->itemcategoryname }}
+                {{ $item->item->item_categories->itemcategoryname }}
             </div>
-            <div class="col-2">
-                {{ $cart->item->itemprice }}
+            <div class="col-2 text-center">
+                {{ $item->item->nettoprice }}
             </div>
             <div class="col-2">
                 <div class="input-group d-flex justify-content-around">
-                    <input type="hidden" value="{{ $cart->item->id }}" name="itemid[]">
+                    <input type="hidden" value="{{ $item->item->id }}" name="itemid[]">
                     <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
-                    <input type="number" step="1" max="10" value="2" name="qty[]" class="quantity-field border-0 w-25">
+                    <input type="number" step="1"  value="{{ $item->transactionquantity }}"name="qty[]" class="quantity-field border-0 w-25">
+                    <input type="hidden" name="id[]" value="{{ $item->id }}">
                     <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
                  </div>
             </div>
-            <div class="col-1">
-                <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+        </form>
+            <div class="col-1"> 
+                <form action="{{url('deleteitem/'.$item->id.'/'.$item->transaction_id )}}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                </form>
             </div>
         </div>
         <hr class="text-secondary">
         @endforeach
     </table>
-    </form>
+    
 </div>
 <script>
     function incrementValue(e) {

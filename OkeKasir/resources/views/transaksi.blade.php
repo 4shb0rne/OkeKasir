@@ -30,10 +30,21 @@ active
             <form action="/addtransaksi" method="POST">
                 @csrf
             <div class="d-flex align-items-center flex justify-content-end">
-                <a href="/save" class="text-muted"><i class="fas fa-bookmark me-3 fa-2x text-dark"></i></a>
                 <a href="/cart" class="text-muted"><i class="fas fa-cart-arrow-down me-3 fa-2x text-dark"></i></a>
                 <a href="/addtransaksi"><button type="submit" class="btn btn-success">ADD</button></a>
             </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="form-group row">
+            <label for="staffname" class="col-sm-2 col-form-label">Staff Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="staffname" placeholder="staff name" name="staffname">
+            </div>
+            <label for="customername" class="col-sm-2 col-form-label">Customer Name</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="customername" placeholder="customer name" name="customername">
+          </div>
         </div>
     </div>
     <table class="table">
@@ -62,7 +73,7 @@ active
         @foreach($items as $item)
         <div class="row p-2">
             <div class="col-1">
-                <img src="assets/profile_picture.jpeg" alt="" width="50px">
+                <img src="{{asset('assets/profile_picture.jpeg')}}" alt="" width="50px">
             </div>
             <div class="col-3">
                 {{ $item->itemname }}

@@ -45,7 +45,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/restock', [RestockController::class, 'openrestock']);
 
     //Cart
-    Route::get('/cart', [TransactionController::class, 'opencart']);
+    Route::get('/cart', [TransactionController::class, 'opentransactionheader']);
+    Route::get('/cart/{id}', [TransactionController::class, 'openedittransaction']);
     
 
     //                                  POST
@@ -54,15 +55,20 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/deleteitemcategory/{id}', [ItemController::class, 'deleteitemcategory']);
     Route::post('/addmenu', [ItemController::class, 'additem']);
     Route::post('/deleteitem/{id}', [ItemController::class, 'deleteitem']);
-    Route::post('/addtransaksi', [TransactionController::class, 'addtransaction']);
+    // Route::post('/edititem/{id}', [ItemController::class, 'openedititem']);
     
     //Transaksi
-
-
+    Route::post('/addtransaksi', [TransactionController::class, 'addtransaction']);
+    Route::post('/deleteitem/{id}/{transactionid}', [TransactionController::class, 'deleteitem']);
+    Route::post('/updatetransaction/{id}', [TransactionController::class, 'updatetransaction']);
+    Route::post('/addbill/{id}', [TransactionController::class, 'addbill']);
     //Restock
 
+
+
     //Cart
-    Route::post('/savecart', [TransactionController::class, 'savecart']);
+    Route::get('/savecart', [TransactionController::class, 'savecart']);
+    Route::post('/deletetransaction/{id}', [TransactionController::class, 'deletetransaction']);
 });
 
 
