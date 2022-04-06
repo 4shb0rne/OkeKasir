@@ -46,7 +46,7 @@ active
             @foreach($transactions as $transaction)
             <div class="row p-2">
                 <div class="col-2">
-                    TD{{ $transaction->id }}
+                    TR{{ $transaction->id }}
                 </div>
                 <div class="col-3">
                     {{ $transaction->customername }}

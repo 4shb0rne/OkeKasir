@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class RestockHeader extends Model
 {
     use HasFactory;
-    protected $fillable = ['staffid'];
+    protected $fillable = ['staffname', 'status'];
+    public function restock_detail(){
+        return $this->hasMany(RestockDetail::class);
+    }
 }

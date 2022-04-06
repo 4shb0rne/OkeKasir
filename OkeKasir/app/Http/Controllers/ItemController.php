@@ -73,12 +73,18 @@ class ItemController extends Controller
     function openedititem($id)
     {
         $item = Item::find($id);
-        return view('editmenu', ['item'=>$item]);
+        $itemcategories = ItemCategories::all();
+        return view('editmenu', ['item'=>$item, 'itemcategories'=>$itemcategories]);
     }
 
-    function edititem(Request $request)
+    function edititem(Request $request,$id)
     {
-
+        $datas = $request->all();
+        $items = Item::where('id',"=",$id)->update([
+            'itemname' => $request->nama_produk,
+            'itemdescription' => $request->deskripsi,
+        ]);
+        return redirect('/menu');
     }
     function deleteitem($id)
     {

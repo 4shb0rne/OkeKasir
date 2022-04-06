@@ -42,7 +42,7 @@ active
               <input type="text" class="form-control" id="staffname" placeholder="staff name" name="staffname">
             </div>
             <label for="customername" class="col-sm-2 col-form-label">Customer Name</label>
-          <div class="col-sm-4">
+                <div div class="col-sm-4">
             <input type="text" class="form-control" id="customername" placeholder="customer name" name="customername">
           </div>
         </div>
@@ -79,13 +79,13 @@ active
                 {{ $item->itemname }}
             </div>
             <div class="col-2">
-                {{ $item->id }}
+                IT{{ $item->id }}
             </div>
             <div class="col-2">
                 {{ $item->item_categories->itemcategoryname }}
             </div>
             <div class="col-2">
-                {{ $item->nettoprice }}
+                {{ $item->brutoprice }}
             </div>
             <div class="col-2">
                 <div class="input-group d-flex justify-content-around">

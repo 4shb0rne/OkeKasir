@@ -11,9 +11,9 @@ active
             <div class="">
                 <select class="custom-select bg-dark text-white">
                     <option selected>Kategori</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @foreach($itemcategories as $itemcategory)
+                        <option value="{{ $itemcategory->id }}">{{ $itemcategory->itemcategoryname }}</option>
+                    @endforeach
                 </select>
             </div>
             
@@ -30,7 +30,7 @@ active
     <form action="{{url('updatetransaction/'.$items[0]->transaction_id)}}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="d-flex align-items-center flex justify-content-end">
-                <a href="" class="text-muted"><i class="fas fa-cart-arrow-down me-3 fa-2x text-dark"></i></a>
+                <a href="/cart" class="text-muted"><i class="fas fa-cart-arrow-down me-3 fa-2x text-dark"></i></a>
                 <a href="/updatetransaction"><button type="submit" class="btn btn-warning me-3">SAVE</button></a>
             </div>
         </div>
@@ -77,7 +77,7 @@ active
                 {{ $item->item->item_categories->itemcategoryname }}
             </div>
             <div class="col-2 text-center">
-                {{ $item->item->nettoprice }}
+                {{ $item->item->brutoprice }}
             </div>
             <div class="col-2">
                 <div class="input-group d-flex justify-content-around">

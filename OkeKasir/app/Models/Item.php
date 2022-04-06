@@ -14,10 +14,6 @@ class Item extends Model
     {
         return $this->belongsTo(ItemCategories::class, 'itemcategoryid');
     }
-    public function cart_tables()
-    {
-        return $this->hasMany(CartTables::class);
-    }
     public function transaction_detail()
     {
         return $this->hasMany(TransactionDetail::class);

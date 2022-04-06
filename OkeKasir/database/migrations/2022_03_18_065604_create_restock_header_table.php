@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('restock_headers', function (Blueprint $table) {
             $table->id();
-            $table->integer("staffid");
+            $table->string("staffname");
+            $table->string("status");
             $table->timestamps();
         });
     }

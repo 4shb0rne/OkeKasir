@@ -33,16 +33,16 @@ active
         <!-- header -->
         <div class="row bg-dark p-2 text-white font-weight-bold mb-2">
             <div class="col-2">
-                ID Stok
+                Date
+            </div>
+            <div class="col-2">
+                ID Restock
+            </div>
+            <div class="col-2">
+                Staff Name
             </div>
             <div class="col-3">
                 Nama Produk
-            </div>
-            <div class="col-2">
-                ID Produk
-            </div>
-            <div class="col-2">
-                Kategori
             </div>
             <div class="col-1">
                 Qty
@@ -52,34 +52,14 @@ active
             </div>
         </div>
         <!-- isi -->
-        <div class="row p-2">
+        {{-- <div class="row p-2">
             <div class="col-2">
                 TR001
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 Celana jeans warna hitam
             </div>
-            <div class="col-2">
-                ST001
-            </div>
-            <div class="col-2">
-               Celana
-            </div>
-            <div class="col-1">
-                5
-            </div>
-            <div class="col-2 text-center">
-                200.000
-            </div>
-        </div>
-        <div class="row p-2">
-            <div class="col-2">
-                TR001
-            </div>
             <div class="col-3">
-                Celana jeans warna hitam
-            </div>
-            <div class="col-2">
                 IT001
             </div>
             <div class="col-2">
@@ -91,49 +71,69 @@ active
             <div class="col-2 text-center">
                 200.000
             </div>
-        </div>
-        <div class="row p-2">
-            <div class="col-2">
-                TR001
-            </div>
-            <div class="col-3">
-                Celana jeans warna hitam
-            </div>
-            <div class="col-2">
-                IT001
-            </div>
-            <div class="col-2">
-               Celana
-            </div>
-            <div class="col-1">
-                5
-            </div>
-            <div class="col-2 text-center">
-                200.000
-            </div>
-        </div>
-        <div class="row p-2">
-            <div class="col-2">
-                TR001
-            </div>
-            <div class="col-3">
-                
-            </div>
-            <div class="col-2">
-                
-            </div>
-            <div class="col-2">
-               
-            </div>
-            <div class="col-1">
-                15
-            </div>
-            <div class="col-2 text-center">
-                600.000
-            </div>
-        </div>
-        <hr class="text-secondary">
-      </table>
+        </div> --}}
+        @foreach ($restocks as $restock)
+            <?php $count = 0; $qty = 0; $flag = 0?>
+            @foreach ($items as $item)
+                @if ($restock->id == $item->restock_id)
+                <div class="row p-2">
+                    @if ($flag == 0)
+                    <div class="col-2">
+                        {{ \Carbon\Carbon::parse($restock['updated_at'])->format('j F Y') }}
+                    </div>
+                    <div class="col-2">
+                        RS{{ $restock->id }}
+                    </div>
+                    <div class="col-2">
+                        {{ $restock->staffname }}
+                    </div>
+                    <?php $flag = 1?>
+                    @else
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2">   
+                    </div>
+                    <div class="col-2">   
+                    </div>
+                    @endif
+                    
+                    
+                    <div class="col-3">
+                        {{ $item->item->itemname }}
+                    </div>
+                    <div class="col-1">
+                        {{ $item->restockquantity}}
+                    </div>
+                    <div class="col-2 text-center">
+                        {{ $item->restockquantity * $item->item->brutoprice}}
+                    </div>
+                    <?php $count = $count + ($item->restockquantity * $item->item->brutoprice);
+                    $qty = $qty + $item->restockquantity; ?>
+                </div>
+                @endif
+            @endforeach
+            <div class="row p-2">
+                <div class="col-2">
+                </div>
+                <div class="col-2">
+                    
+                </div>
+                <div class="col-2">
+                    
+                </div>
+                <div class="col-3">
+                   
+                </div>
+                <div class="col-1">
+                    {{$qty}}
+                </div>
+                <div class="col-2 text-center">
+                   <b>{{$count}}</b> 
+                </div>
+            </div> 
+            <hr class="text-secondary">
+        @endforeach
+    </table>
 </div>
 @endsection
 

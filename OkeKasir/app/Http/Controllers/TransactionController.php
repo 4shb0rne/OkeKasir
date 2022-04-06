@@ -6,6 +6,8 @@ use App\Models\CartTables;
 use App\Models\ItemCategories;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
+use App\Models\RestockHeader;
+use App\Models\RestockDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -19,9 +21,10 @@ class TransactionController extends Controller
     }
     function openaddtransaction()
     {
-        return view('transaksi_save');
+        // return view('transaksi_save');
+        $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->get();
+        return view('transaksi_header', ['transactions'=>$transactions]);
     }
-
     function addtransaction(Request $request)
     {
         $datas = $request->all();
@@ -43,17 +46,12 @@ class TransactionController extends Controller
         return redirect('/cart');
     }
 
-    function opencart()
-    {
-        $carts = TransactionDetail::all();
-        return view('transaksi_detail', ['carts'=>$carts]);
-    }
-
     // masuk ke detail transaction (open transaction detail)
     function openedittransaction($id)
     {
         $items = TransactionDetail::query()->where('transaction_id', 'LIKE', $id)->get();
-        return view('transaksi_detail', ['items'=>$items]);
+        $itemcategories = ItemCategories::all();
+        return view('transaksi_detail', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
 
     // ini buat view transaction header
@@ -68,28 +66,14 @@ class TransactionController extends Controller
         $transaction = TransactionHeader::find($id)->delete();
         return redirect('/cart');
     }
-
+    // delete item di transaction detail
     function deleteitem($id, $transactionid)
     {
         $transaction = TransactionDetail::find($id)->delete();
         return redirect('/cart/'.$transactionid);
     }
 
-    // function savecart(Request $request)
-    // {
-    //     $datas = $request->all();
-    //     foreach($datas["itemid"] as $index=>$data){
-    //         if($datas["qty"][$index] > 0){
-    //             TransactionDetail::create([
-    //                 'itemid'=>$data,
-    //                 'transactionquantity'=>$datas["qty"][$index],
-    //                 'customername'=>$request->customername
-    //             ]);
-    //         }
-    //     }
-    //     CartTables::truncate();
-    //     return redirect('/transaksi');
-    // }
+    // update item di transaction detail
     function updatetransaction(Request $request, $id)
     {
         $datas = $request->all();
@@ -107,13 +91,36 @@ class TransactionController extends Controller
         return redirect('/cart');
         // return redirect('/cart/'.$id);
     }
-
+    // success transaction
     function addbill(Request $request, $id){
         $datas = $request->all();
         $transaction = TransactionHeader::find($id);
         $transaction->update([
             'status'=>"paid"
         ]);
-        return redirect('/transaksi');
+        return redirect('/penjualan');
+    }
+
+    /* HISTORY */
+    function openhistory(){
+        return view('riwayat');
+    }
+    function openhistorysale(){
+        $transactions = TransactionHeader::query()->where('status', 'LIKE', 'paid')->get();
+        $items = TransactionDetail::all();
+        return view('h_penjualan', ['transactions'=>$transactions, 'items'=>$items]);
+    }
+
+    function openhistorystock(){
+        $restocks = RestockHeader::query()->where('status', 'LIKE', 'done')->get();
+        $items = RestockDetail::all();
+        return view('h_stok', ['restocks'=>$restocks, 'items'=>$items]);
+    }
+
+    /* LAPORAN */
+    function openlaporan(){
+        $transactions = TransactionHeader::query()->where('status', 'LIKE', 'paid')->get();
+        $items = TransactionDetail::all();
+        return view('laporan', ['transactions'=>$transactions, 'items'=>$items]);
     }
 }

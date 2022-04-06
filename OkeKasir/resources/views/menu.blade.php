@@ -68,13 +68,13 @@ active
                 {{ $item->itemname }}
             </div>
             <div class="col-2">
-                {{ $item->id }}
+                IT{{ $item->id }}
             </div>
             <div class="col-2">
                {{ $item->item_categories->itemcategoryname }}
             </div>
             <div class="col-1">
-                {{ $item->nettoprice }}
+                {{ $item->brutoprice }}
             </div>
             <div class="col-2 text-center">
                 {{ $item->itemquantity }}

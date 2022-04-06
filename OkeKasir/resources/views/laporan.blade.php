@@ -38,28 +38,54 @@ active
                 Penjualan Kotor
             </div>
             <div class="col-4">
-                Total
+                Harga Pokok
             </div>
             <div class="col-3">
                 Penjualan Bersih
             </div>
         </div>
         <!-- isi -->
-        <div class="row p-2 text-center">
-            <div class="col-2 text-left">
-                2020
+        {{-- foreach per tahun --}}
+        <?php $sumKotor = 0; $sumBersih = 0; $flag = 0?>
+        @foreach ($transactions as $transaction)
+            @foreach ($items as $item)
+            {{-- <div class="row p-2 text-center">
+                <div class="col-2 text-left"> --}}
+                    {{-- {{ \Carbon\Carbon::parse($transaction['updated_at'])->year }} --}}
+                {{-- </div>
+                <div class="col-3"> --}}
+                    <?php $sumKotor = $sumKotor + $item->item->brutoprice; ?>
+                {{-- </div>
+                <div class="col-4">
+                    
+                </div>
+                <div class="col-3"> --}}
+                    <?php $sumBersih = $sumBersih + $item->item->nettoprice; ?>
+                {{-- </div>
+            </div> --}}
+            @endforeach
+        @endforeach
+        @foreach ( $transactions as $transaction )
+            {{-- <?php if(isset($_GET['updated_at'])): ?> --}}
+            <div class="row p-2 text-center">
+                <div class="col-2 text-left">
+                    {{ \Carbon\Carbon::parse($transaction['updated_at'])->year }}
+                </div>
+                <div class="col-3">
+                    {{$sumKotor}}
+                </div>
+                <div class="col-4">
+                    {{$sumBersih}}
+                </div>
+                <div class="col-3">
+                    {{$sumKotor-$sumBersih}}
+                </div>
             </div>
-            <div class="col-3">
-                1.500.000
-            </div>
-            <div class="col-4">
-                1.400.000
-            </div>
-            <div class="col-3">
-                700.000
-            </div>
-        </div>
-        <hr class="text-secondary">
+            <hr class="text-secondary">
+        {{-- <?php endif; ?> --}}
+        @break
+        @endforeach
+        
       </table>
 </div>
 @endsection

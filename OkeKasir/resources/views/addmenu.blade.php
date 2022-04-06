@@ -19,11 +19,11 @@ active
         </div>
         <div class="d-flex flex-column my-3">
             <label for="netto">Harga Netto</label>
-            <input type="number" name="netto" id="netto" placeholder="Masukkan harga bersih" class="p-2 my-2">
+            <input type="number" name="netto" id="netto" placeholder="Masukkan harga bersih (beli)" class="p-2 my-2">
         </div>
         <div class="d-flex flex-column my-3">
             <label for="bruto">Harga Bruto</label>
-            <input type="number" name="bruto" id="bruto" placeholder="Masukkan harga kotor" class="p-2 my-2">
+            <input type="number" name="bruto" id="bruto" placeholder="Masukkan harga kotor (jual)" class="p-2 my-2">
         </div>
         <div class="d-flex flex-column my-3">
             <label for="bruto">Kategori</label>

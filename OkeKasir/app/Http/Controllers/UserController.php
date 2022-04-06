@@ -19,7 +19,7 @@ class UserController extends Controller
         ]);
         if(Auth::attempt($validate)) {
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect('/transaksi');
         }
         /*
         return back()->withErrors([
