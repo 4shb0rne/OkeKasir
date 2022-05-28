@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('transaction_headers', function (Blueprint $table) {
             $table->id();
+            $table->integer('userid')->references('id')->on('users');
             $table->string("customername");
             $table->string("staffname");
             $table->string("status");

@@ -18,8 +18,9 @@ active
             </div>
             <div class="">
                 <nav class="navbar">
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline" action="/searchitem" method="POST">
+                        @csrf
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                       <button class="btn btn-outline-success my-2 my-sm-0 border-dark text-dark" type="submit">
                         <i class="fas fa-search"></i>
                       </button>

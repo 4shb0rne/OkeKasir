@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\ItemCategories;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\Builder;
 class ItemController extends Controller
 {
     function openaddcategory()
@@ -59,7 +59,7 @@ class ItemController extends Controller
         $item->save();
         return redirect('/menu');
     }
-
+    
     function additemcategory(Request $request)
     {
         $validate = $request->validate([
@@ -90,5 +90,20 @@ class ItemController extends Controller
     {
         $item = Item::find($id)->delete();
         return redirect('/menu');
+    }
+
+    function searchitem(Request $request)
+    {
+        $items = Item::query();
+        if($request->search)
+        {
+            $items = $items->where('itemname', 'like', '%'.$request->search.'%')->orwherehas('item_categories', function(Builder $query) use($request){
+                $query->where('itemcategoryname', 'like', '%'.$request->search.'%');
+            })->get();
+        } else{
+            $items = Item::all();
+        }
+        $itemcategories = ItemCategories::all();
+        return view('/menu', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
 }

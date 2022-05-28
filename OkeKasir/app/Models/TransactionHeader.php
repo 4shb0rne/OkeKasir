@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionHeader extends Model
 {
     use HasFactory;
-    protected $fillable = ['customername', 'staffname', 'status'];
+    protected $fillable = ['userid', 'customername', 'staffname', 'status'];
     public function transaction_details(){
         return $this->hasMany(TransactionDetail::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class, 'userid');
     }
 }

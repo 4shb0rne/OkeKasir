@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/addmenu', [ItemController::class, 'additem']);
     Route::post('/deleteitem/{id}', [ItemController::class, 'deleteitem']);
     Route::post('/edititem/{id}', [ItemController::class, 'edititem']);
+    Route::post('/searchitem', [ItemController::class, 'searchitem']);
     
     //Transaksi
     Route::post('/addtransaksi', [TransactionController::class, 'addtransaction']);

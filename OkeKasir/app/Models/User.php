@@ -36,10 +36,15 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be cast.
-     *
+     *B w
      * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function transactionheader()
+    {
+        return $this->hasMany(TransactionHeader::class);
+    }
 }

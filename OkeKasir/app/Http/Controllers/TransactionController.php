@@ -10,7 +10,7 @@ use App\Models\RestockHeader;
 use App\Models\RestockDetail;
 use App\Models\Item;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class TransactionController extends Controller
 {
     function opentransaction()
@@ -22,13 +22,16 @@ class TransactionController extends Controller
     function openaddtransaction()
     {
         // return view('transaksi_save');
-        $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->get();
+        $user = Auth::user()->id;
+        $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->where('userid', 'LIKE', $user)->get();
         return view('transaksi_header', ['transactions'=>$transactions]);
     }
     function addtransaction(Request $request)
     {
         $datas = $request->all();
+        $user = Auth::user()->id;
         $insert = TransactionHeader::create([
+            'userid' => $user,
             'customername'=>$request->customername,
             'staffname'=>$request->staffname,
             'status'=>"unpaid"
@@ -57,7 +60,8 @@ class TransactionController extends Controller
     // ini buat view transaction header
     function opentransactionheader()
     {
-        $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->get();
+        $user = Auth::user()->id;
+        $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->where('userid', 'LIKE', $user)->get();
         return view('transaksi_header', ['transactions'=>$transactions]);
     }
     // hapus transaction header
