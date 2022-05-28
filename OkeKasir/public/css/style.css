@@ -16,7 +16,7 @@ body {
 #sidebar {
     width: 200px;
     height: 100%;
-    background-color: rgb(53, 53, 53);
+    background-color: white;
     position: fixed;
     left: 0;
     top: 0;
@@ -31,7 +31,7 @@ body {
     width: calc(100% - 200px);
     min-height: 100vh;
     max-height: auto;
-    background-color: rgba(202, 202, 202, 0.466);
+    background-color: #f0f7ff;
     position: absolute;
     top: 0;
     right: 0;
@@ -45,12 +45,13 @@ body {
 .sidebar-header {
     /* height: 100px;
     background-color: pink; */
-    color: white;
+    /* color: rgb(100, 100, 177); */
+    color: black;
 }
 
 #sidebar ul li a {
     text-decoration: none;
-    color: white;
+    color: rgba(101, 99, 99, 0.875);
 }
 
 #sidebar ul li{
@@ -59,11 +60,16 @@ body {
 }
 
 #sidebar ul li.active {
-    background-color: rgba(37, 37, 37, 0.616);
+    background-color: #f0f7ff;
+    
+}
+
+#sidebar ul li a.active{
+    color: #2555ff;
 }
 
 #sidebar ul li:hover {
-    background-color: rgba(37, 37, 37, 0.603);
+    background-color: #ddebfc;
 }
 
 @media (max-width: 768px) {
@@ -246,10 +252,32 @@ icon-shape {
 }
 
 .submitBtn {
-    background-color: rgb(42, 42, 42);
+    background-color: #007aff;
     color: white;
 }
 .submitBtn:hover {
-    background-color: black;
+    background-color: #0070e7;
     color: white;
+}
+
+/* .bg-primary{
+    background-color: #007aff !important;
+} */
+
+.bg-dark {
+    background-color: #007aff !important;
+}
+
+.btn-dark{
+    background-color: #007aff !important;
+    border-color: #007aff !important;
+}
+
+.text-dark{
+    color: #007aff !important;
+    border-color: #007aff !important;  
+}
+
+.btn-dark:hover{
+    background-color: #0365cd !important;
 }

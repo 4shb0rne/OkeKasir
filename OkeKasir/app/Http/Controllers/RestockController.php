@@ -16,7 +16,9 @@ class RestockController extends Controller
         //             ->join('items','restock_details.itemid','=','id')
         //             ->select('restock_headers.staffname as headers', 'restock_details.* as details', 'items.itemname as items');     
         // return view('restock',['restocks'=>$restocks]);
-        return view('restock');
+        $restocks = RestockHeader::query()->where('status', 'LIKE', 'undone')->get();
+        $items = RestockDetail::all();
+        return view('restock', ['restocks'=>$restocks, 'items'=>$items]);
     }
     function openaddbillrestock($id){
         $restocks = RestockHeader::find($id);
@@ -46,12 +48,12 @@ class RestockController extends Controller
             'id_produk' => 'required|integer',
             'qty' => 'required|integer'
         ]);
-        
         $restock = new RestockDetail();
         $restock->itemid = $validate['id_produk'];
         $restock->restockquantity = $validate['qty'];
         // + qty ke item
         $restock->restock_id = $id;
+       
         $restock->save();
         return redirect('/addrestock/'.$id);
     }
@@ -70,5 +72,12 @@ class RestockController extends Controller
         $transaction = RestockDetail::find($id)->delete();
         // - qty di item
         return redirect('/addrestock/'.$restock_id);
+    }
+
+    // hapus restock header
+    function deleterestock($id)
+    {
+        $restock = RestockHeader::find($id)->delete();
+        return redirect('/restock');
     }
 }

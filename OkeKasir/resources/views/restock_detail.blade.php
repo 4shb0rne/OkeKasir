@@ -11,13 +11,13 @@ active
         @csrf
         <div class="d-flex flex-column my-3">
             <label for="id_produk">ID</label>
-            <input type="text" name="id_produk" id="id_produk" placeholder="Masukkan ID produk" class="p-2 my-2">
+            <input type="text" name="id_produk" id="id_produk" placeholder="Masukkan ID produk (hanya angka)" class="p-2 my-2">
         </div>
         <div class="d-flex flex-column my-3">
             <label for="Qty">Qty</label>
             <input type="number" name="qty" id="Qty" placeholder="Masukkan stok barang" class="p-2 my-2" value="0">
         </div>
-        <button class="btn btn-dark px-3 py-1 my-3" type="submit">Add</button>
+        <button class="btn btn-dark px-3 py-1 my-3" type="submit">ADD</button>
     </form>
 
     

@@ -84,6 +84,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/addbillrestock', [RestockController::class, 'addbillrestock']);
     Route::post('/deleterestockitem/{id}/{restockid}', [RestockController::class, 'deleterestockitem']);
     Route::post('/saverestock/{id}', [RestockController::class, 'saverestock']);
+    Route::post('/deleterestock/{id}', [RestockController::class, 'deleterestock']);
 
     // Catatan
     Route::post('/addcatatan', [ScheduleController::class, 'addcatatan']);

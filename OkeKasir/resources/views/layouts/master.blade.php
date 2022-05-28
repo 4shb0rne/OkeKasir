@@ -29,37 +29,37 @@
             </div>
             <ul class="text-white list-unstyled components">
                 <li class="@yield('nav-transaksi')">
-                    <a href="/transaksi" class="ps-4">
+                    <a href="/transaksi" class="ps-4 @yield('nav-transaksi')">
                         <i class="fas fa-money-check-alt me-2"></i>
                         Transaksi
                     </a>
                 </li>
                 <li class="@yield('nav-menu')"> 
-                    <a href="/menu" class="ps-4">
+                    <a href="/menu" class="ps-4 @yield('nav-menu')">
                         <i class="fas fa-list-alt me-2"></i>
                         Menu
                     </a>
                 </li>
                 <li class="@yield('nav-restock')"> 
-                    <a href="/restock" class="ps-4">
+                    <a href="/restock" class="ps-4 @yield('nav-restock')">
                         <i class="fas fa-boxes me-2"></i>
                         Restock
                     </a>
                 </li>
                 <li class="@yield('nav-laporan')"> 
-                    <a href="/laporan" class="ps-4">
+                    <a href="/laporan" class="ps-4 @yield('nav-laporan')">
                         <i class="fas fa-newspaper me-2"></i>
                         Laporan
                     </a>
                 </li>
                 <li class="@yield('nav-riwayat')"> 
-                    <a href="/riwayat" class="ps-4">
+                    <a href="/riwayat" class="ps-4 @yield('nav-riwayat')">
                         <i class="fas fa-history me-2"></i>
                         Riwayat
                     </a>
                 </li>
                 <li class="@yield('nav-catatan')"> 
-                  <a href="/catatan" class="ps-4">
+                  <a href="/catatan" class="ps-4 @yield('nav-catatan')">
                       <i class="fas fa-clipboard me-2"></i>
                       Catatan
                   </a>

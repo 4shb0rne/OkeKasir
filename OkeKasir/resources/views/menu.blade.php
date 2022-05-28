@@ -28,7 +28,7 @@ active
                   </nav>
             </div>
             <div class="d-flex align-items-center flex justify-content-end">
-                <a href="/editkategori" class="text-muted"><button type="button" class="btn btn-warning me-3">EDIT KATEGORI</button></a>
+                <a href="/editkategori" class="text-muted"><button type="button" class="btn btn-warning text-white me-3">EDIT KATEGORI</button></a>
                 <a href="/addkategori" class="text-muted"><button type="button" class="btn btn-primary me-3">ADD KATEGORI</button></a>
                 <a href="/addmenu" class="text-muted"><button type="button" class="btn btn-success">ADD MENU</button></a>
             </div>
