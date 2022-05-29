@@ -6,6 +6,8 @@ use App\Models\Item;
 use App\Models\ItemCategories;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+
 class ItemController extends Controller
 {
     function openaddcategory()
@@ -24,7 +26,8 @@ class ItemController extends Controller
     }
     function openmenu()
     {
-        $items = Item::all();
+        $user = Auth::user()->id;
+        $items = Item::query()->where('userid', 'LIKE', $user)->get();
         $itemcategories = ItemCategories::all();
         return view('/menu', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
@@ -36,6 +39,7 @@ class ItemController extends Controller
 
     function additem(Request $request)
     {
+        $user = Auth::user()->id;
         $validate = $request->validate([
             'nama_produk' => 'required|string',
             'deskripsi' => 'required|string',
@@ -46,6 +50,7 @@ class ItemController extends Controller
             'image' => 'required|image|mimes:jpeg,jpg,png,svg'
         ]);
         $item = new Item();
+        $item->userid = $user;
         $item->itemcategoryid =  $validate['categoryid'];
         $item->itemname = $validate['nama_produk'];
         $item->itemdescription = $validate['deskripsi'];

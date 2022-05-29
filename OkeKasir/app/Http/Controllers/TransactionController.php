@@ -15,7 +15,8 @@ class TransactionController extends Controller
 {
     function opentransaction()
     {
-        $items = Item::all();
+        $user = Auth::user()->id;
+        $items = Item::query()->where('userid', 'LIKE', $user)->get();
         $itemcategories = ItemCategories::all();
         return view('transaksi', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
