@@ -16,7 +16,8 @@ class ItemController extends Controller
     }
     function openeditcategory()
     {
-        $itemcategories = ItemCategories::all();
+        $user = Auth::user()->id;
+        $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('/editkategori', ['itemcategories'=>$itemcategories]);
     }
     function deleteitemcategory($id)
@@ -28,12 +29,13 @@ class ItemController extends Controller
     {
         $user = Auth::user()->id;
         $items = Item::query()->where('userid', 'LIKE', $user)->get();
-        $itemcategories = ItemCategories::all();
+        $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('/menu', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
     function openaddmenu()
     {
-        $itemcategories = ItemCategories::all();
+        $user = Auth::user()->id;
+        $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('/addmenu', ['itemcategories'=>$itemcategories]);
     }
 
@@ -71,14 +73,16 @@ class ItemController extends Controller
             'nama_kategori' => 'required'
         ]);
         $itemcategory = new ItemCategories();
+        $itemcategory->userid = Auth::user()->id;
         $itemcategory->itemcategoryname = $validate['nama_kategori'];
         $itemcategory->save();
         return redirect('/menu');
     }
     function openedititem($id)
     {
+        $user = Auth::user()->id;
         $item = Item::find($id);
-        $itemcategories = ItemCategories::all();
+        $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('editmenu', ['item'=>$item, 'itemcategories'=>$itemcategories]);
     }
 
@@ -99,16 +103,18 @@ class ItemController extends Controller
 
     function searchitem(Request $request)
     {
+        $user = Auth::user()->id;
         $items = Item::query();
         if($request->search)
         {
-            $items = $items->where('itemname', 'like', '%'.$request->search.'%')->orwherehas('item_categories', function(Builder $query) use($request){
+            $items = $items->where('itemname', 'like', '%'.$request->search.'%')->orWhere('userid', 'like', $user)
+            ->orwherehas('item_categories', function(Builder $query) use($request){
                 $query->where('itemcategoryname', 'like', '%'.$request->search.'%');
             })->get();
         } else{
             $items = Item::all();
         }
-        $itemcategories = ItemCategories::all();
+        $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('/menu', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
 }

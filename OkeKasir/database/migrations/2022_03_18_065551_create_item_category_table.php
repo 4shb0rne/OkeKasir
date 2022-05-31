@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('item_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('userid')->references('id')->on('users');
             $table->string("itemcategoryname");
             $table->timestamps();
         });

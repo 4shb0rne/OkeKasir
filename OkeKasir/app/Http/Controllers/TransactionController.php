@@ -17,7 +17,7 @@ class TransactionController extends Controller
     {
         $user = Auth::user()->id;
         $items = Item::query()->where('userid', 'LIKE', $user)->get();
-        $itemcategories = ItemCategories::all();
+        $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('transaksi', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
     function openaddtransaction()
@@ -53,8 +53,9 @@ class TransactionController extends Controller
     // masuk ke detail transaction (open transaction detail)
     function openedittransaction($id)
     {
+        $user = Auth::user()->id;
         $items = TransactionDetail::query()->where('transaction_id', 'LIKE', $id)->get();
-        $itemcategories = ItemCategories::all();
+        $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('transaksi_detail', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
 
