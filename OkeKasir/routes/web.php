@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/menu', [ItemController::class, 'openmenu']);
     Route::get('/addmenu', [ItemController::class, 'openaddmenu']);
     Route::get('/edititem/{id}', [ItemController::class, 'openedititem']);
+    Route::get('/filtercategory', [ItemController::class, 'filtercategories']);
 
     //Transaksi
     Route::get('/transaksi', [TransactionController::class, 'opentransaction']);

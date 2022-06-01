@@ -117,4 +117,22 @@ class ItemController extends Controller
         $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
         return view('/menu', ['items'=>$items, 'itemcategories'=>$itemcategories]);
     }
+
+    public function filtercategories(Request $request)
+    {   
+        $item = Item::query()->with("item_categories");
+        $itemcategories = ItemCategories::all();
+        if($request->ajax() && $request->category != null)
+        {
+            return response()->json(['items' => $item->where('itemcategoryid',$request->category)->get()]);
+        }
+        if($request->ajax())
+        {
+            return response()->json(['items' => $item->get()]);
+        }
+ 
+        return view('/menu',[
+            'items' => $item->get(), 'itemcategories' => $itemcategories
+        ]);
+    }
 }

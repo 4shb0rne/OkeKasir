@@ -123,5 +123,70 @@
     theme: 'snow'
     });
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+            
+    $(document).ready(function(){
+        function cleartable()
+        {
+            let deletedtable = $(".item-row");
+            let deletedhr = $(".table-hr");
+            deletedtable.remove();
+            deletedhr.remove();
+        }
+        $(document).on('change','#category',function(){
+            cleartable();
+            let category = $(this).val();
+            let page = 1;
+            history.pushState(null,null,'?page=' + page + '&category=' + category );
+            $.ajax({
+                url:"/filtercategory?page=" + page + '&category=' + category,
+                method:"GET",
+                data:{category:category},
+                success:function({items}){
+                    //$('.wrapper').html(data);
+                    items.forEach(item => {
+                        console.log(item);
+                        $("#menutable").append(`
+                        <div class="row p-2 item-row">
+                        <div class="col-1">
+                            <img src="assets/profile_picture.jpeg" alt="" width="50px">
+                        </div>
+                        <div class="col-2">
+                            ${item.itemname}
+                        </div>
+                        <div class="col-2">
+                            IT${item.id}
+                        </div>
+                        <div class="col-2">
+                            ${item.item_categories.itemcategoryname}
+                        </div>
+                        <div class="col-1">
+                            ${item.brutoprice}
+                        </div>
+                        <div class="col-2 text-center">
+                            ${item.itemquantity}
+                        </div>
+                        <div class="col-2 text-center">
+                            <form action="/deleteitem/${item.id}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                <a href="/edititem/${item.id}" class="text-muted"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button></a>
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    `);
+                    $("#menutable").append(`
+                        <hr class="text-secondary table-hr">
+                    `)
+                    });
+                }
+            });
+        });
+
+    });
+    
+</script>
+       
 </body>
 </html>

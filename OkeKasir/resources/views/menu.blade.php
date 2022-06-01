@@ -9,7 +9,7 @@ active
     <div class="top mb-4">
         <div class="d-flex align-items-center justify-content-between">
             <div class="">
-                <select class="custom-select bg-dark text-white">
+                <select class="custom-select bg-dark text-white" name="category" id="category">
                     <option selected>Kategori</option>
                     @foreach($itemcategories as $itemcategory)
                         <option value="{{ $itemcategory->id }}">{{ $itemcategory->itemcategoryname }}</option>
@@ -34,7 +34,7 @@ active
             </div>
         </div>
     </div>
-    <table class="table">
+    <table class="table" id="menutable">
         <!-- header -->
         <div class="row bg-dark p-2 text-white font-weight-bold mb-2">
             <div class="col-1">
@@ -61,7 +61,7 @@ active
         </div>
         <!-- isi -->
         @foreach($items as $item)
-        <div class="row p-2">
+        <div class="row p-2 item-row">
             <div class="col-1">
                 <img src="assets/profile_picture.jpeg" alt="" width="50px">
             </div>
@@ -87,8 +87,8 @@ active
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                 </form>
             </div>
+        <hr class="text-secondary table-hr">
         </div>
-        <hr class="text-secondary">
         @endforeach
       </table>
 </div>
