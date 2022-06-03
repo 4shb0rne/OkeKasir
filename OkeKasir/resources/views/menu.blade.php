@@ -87,8 +87,8 @@ active
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                 </form>
             </div>
-        <hr class="text-secondary table-hr">
         </div>
+        <hr class="text-secondary table-hr">
         @endforeach
       </table>
 </div>

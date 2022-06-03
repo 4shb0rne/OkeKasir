@@ -122,14 +122,16 @@ class ItemController extends Controller
     {   
         $item = Item::query()->with("item_categories");
         $itemcategories = ItemCategories::all();
+        $user = Auth::user()->id;
+        if($request->ajax() && $request->category == 'Kategori')
+        {
+            return response()->json(['items' => $item->where('userid', $user)->get()]);
+        }
         if($request->ajax() && $request->category != null)
         {
             return response()->json(['items' => $item->where('itemcategoryid',$request->category)->get()]);
         }
-        if($request->ajax())
-        {
-            return response()->json(['items' => $item->get()]);
-        }
+        
  
         return view('/menu',[
             'items' => $item->get(), 'itemcategories' => $itemcategories

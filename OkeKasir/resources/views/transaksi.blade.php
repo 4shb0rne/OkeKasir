@@ -90,7 +90,7 @@ active
             <div class="col-2">
                 <div class="input-group d-flex justify-content-around">
                     <input type="button" value="-" class="button-minus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
-                    <input type="hidden" value="{{ $item->id }}" name="itemid[]">
+                    <input type="hidden" value="{{ $item->id }}" name="itemid[]" id="item_id">
                     <input type="number" step="1" max="10" value="0" name="qty[]" class="quantity-field border-0 text-center w-25">
                     <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm bg-dark text-white" data-field="quantity">
                  </div>
@@ -102,40 +102,6 @@ active
       </form>
       
 </div>
-<script>
-    function incrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
 
-        if (!isNaN(currentVal)) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    function decrementValue(e) {
-        e.preventDefault();
-        var fieldName = $(e.target).data('field');
-        var parent = $(e.target).closest('div');
-        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-        if (!isNaN(currentVal) && currentVal > 0) {
-            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-        } else {
-            parent.find('input[name=' + fieldName + ']').val(0);
-        }
-    }
-
-    $('.input-group').on('click', '.button-plus', function(e) {
-        incrementValue(e);
-    });
-
-    $('.input-group').on('click', '.button-minus', function(e) {
-        decrementValue(e);
-    });
-</script>
 @endsection
 

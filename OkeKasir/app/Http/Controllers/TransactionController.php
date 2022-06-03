@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CartTables;
 use App\Models\ItemCategories;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;

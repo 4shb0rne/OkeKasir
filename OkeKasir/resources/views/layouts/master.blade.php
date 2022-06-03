@@ -150,7 +150,7 @@
                         $("#menutable").append(`
                         <div class="row p-2 item-row">
                         <div class="col-1">
-                            <img src="assets/profile_picture.jpeg" alt="" width="50px">
+                            <img src="assets/profile_picture.jpeg" alt="" width="50px" style="padding:0px">
                         </div>
                         <div class="col-2">
                             ${item.itemname}
@@ -187,6 +187,38 @@
     });
     
 </script>
-       
+<script>
+    // $('.input-group').on('click', '.button-plus', function(e) {
+    //     let fields = document.querySelector(".quantity-field");
+    //     let newValue = parseInt(fields.value, 10)+1;
+    //     fields.value = newValue;
+    // });
+    const incrementbutton = document.querySelectorAll(".button-plus");
+    const decrementbutton = document.querySelectorAll(".button-minus");
+    
+    for(let i = 0; i < incrementbutton.length; i++){
+        const button = incrementbutton[i];
+        const decbutton = decrementbutton[i];
+        button.addEventListener('click', (e)=>{
+            const buttonclicked = e.target;
+            const input = buttonclicked.parentElement.children[2];
+            let newValue = parseInt(input.value, 10)+1;
+            input.value = newValue;
+        });
+        decbutton.addEventListener('click', (e)=>{
+            const buttonclicked = e.target;
+            const input = buttonclicked.parentElement.children[2];
+            if(input.value != 0){
+                let newValue = parseInt(input.value, 10)-1;
+                input.value = newValue;
+            }
+        });
+    }
+
+    // $('.input-group').on('click', '.button-minus', function(e) {
+        
+
+    // });
+</script>
 </body>
 </html>
