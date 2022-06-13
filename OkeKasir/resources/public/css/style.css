@@ -1,0 +1,72 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.nav-link {
+  font-weight: 400;
+}
+
+.btnBewarna {
+  border: none;
+  font-weight: 500;
+  color: white;
+  border-radius: 5px;
+  background-color: #0052e8;
+  box-shadow: 0px 8px 16px rgba(0, 82, 232, 0.24);
+}
+
+.btnBewarna:hover {
+  box-shadow: 0px 8px 16px rgba(0, 81, 232, 0.479);
+  transition: 0.6s;
+}
+
+.boldBtn {
+  border: none;
+  font-weight: 500;
+  color: #0052e8;
+  margin: 5px;
+  margin-right: 20px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+h1 {
+  font-family: "Volkhov", serif;
+  padding: 5px 0;
+}
+
+span {
+  font-family: "Volkhov", serif;
+}
+
+header {
+  background-color: rgba(255, 255, 255, 0.911);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+header.active {
+  box-shadow: 0px 8px 16px rgba(0, 81, 232, 0.078);
+  transition: 0.3s;
+}
+
+.logo:hover,
+.nav-item:hover,
+.boldBtn:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.illustrasi {
+  animation: MoveUpDown 4s linear infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
