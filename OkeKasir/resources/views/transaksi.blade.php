@@ -73,7 +73,7 @@ active
         @foreach($items as $item)
         <div class="row p-2">
             <div class="col-1">
-                <img src="{{asset('assets/profile_picture.jpeg')}}" alt="" width="50px">
+                <img src="{{asset('assets/'.$item->itempicture)}}" alt="" width="50px">
             </div>
             <div class="col-3">
                 {{ $item->itemname }}
