@@ -21,10 +21,10 @@ class TransactionController extends Controller
     }
     function openaddtransaction()
     {
-        // return view('transaksi_save');
         $user = Auth::user()->id;
         $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->where('userid', 'LIKE', $user)->get();
-        return view('transaksi_header', ['transactions'=>$transactions]);
+        $items = TransactionDetail::all();
+        return view('transaksi_header', ['transactions'=>$transactions, 'items'=>$items]);
     }
     function addtransaction(Request $request)
     {
@@ -69,7 +69,8 @@ class TransactionController extends Controller
     {
         $user = Auth::user()->id;
         $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->where('userid', 'LIKE', $user)->get();
-        return view('transaksi_header', ['transactions'=>$transactions]);
+        $items = TransactionDetail::all();
+        return view('transaksi_header', ['transactions'=>$transactions, 'items'=>$items]);
     }
     // hapus transaction header
     function deletetransaction($id)

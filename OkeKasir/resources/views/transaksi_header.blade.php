@@ -55,7 +55,13 @@ active
                     {{ $transaction->staffname }}
                 </div>
                 <div class="col-2">
-                    300.000
+                    <?php $sum = 0?>
+                    @foreach ($items as $item)
+                        @if ($transaction->id == $item->transaction_id)
+                        <?php $sum = $sum + ($item->transactionquantity * $item->item->brutoprice);?>
+                        @endif
+                    @endforeach
+                    {{$sum}}
                 </div>
                 <div class="col-2 text-center d-flex justify-content-center">
                     <form action="{{url('deletetransaction/'.$transaction->id)}}" enctype="multipart/form-data" method="POST">
@@ -67,9 +73,6 @@ active
                         @csrf
                         <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>
                     </form>
-                    
-                    {{-- <a href="/edit"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button></a>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button> --}}
                     
                 </div>
             </div>
