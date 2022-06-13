@@ -26,7 +26,7 @@ class UserController extends Controller
             'errormsg' => 'Invalid Credential'
         ]);
         */
-        return redirect('/');
+        return redirect('/login');
     }
     function registerpage()
     {

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OkeKasir - Landing Page</title>
-    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script src="../public/js/jquery.min.js"></script>
     <script src="../public/js/script.js"></script>
 
@@ -26,8 +26,8 @@
   <body>
     <header class="sticky-top">
       <div class="container d-flex flex-wrap justify-content-center py-3">
-        <a href="LandingPage.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-          <img src="../public/assets/logo 2.png" alt="OkeKasir" class="logo" width="170px" height="100%" />
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+          <img src="{{ asset('assets/logo 2.png') }}" alt="OkeKasir" class="logo" width="170px" height="100%" />
         </a>
 
         <div class="col-md-6 ">
@@ -35,8 +35,8 @@
             <li class="nav-item"><a href="#page1" class="nav-link link-dark" id="homeBtn">Home</a></li>
             <li class="nav-item"><a href="#tujuan" class="nav-link link-dark" id="tujuanBtn">Tujuan</a></li>
             <li class="nav-item"><a href="#fitur" class="nav-link link-dark" id="fiturBtn">Fitur-fitur</a></li>
-            <li><a href="../login/login.blade.php"><button type="button" class="boldBtn">Masuk</button></a></li>
-            <li><a href="../signup/register.blade.php"><button class="btnBewarna" style="height: 40px; width: 100px" type="button">Daftar</button></a></li>
+            <li><a href="/login"><button type="button" class="boldBtn">Masuk</button></a></li>
+            <li><a href="/register"><button class="btnBewarna" style="height: 40px; width: 100px" type="button">Daftar</button></a></li>
           </ul>
         </div>
     </div>
@@ -51,10 +51,10 @@
               bersama kami.
             </h1>
             <p class="fw-light text-muted" style="padding-bottom: 10px;">OkeKasir bersedia untuk membantu Anda dalam mengatur data-data perusahaan dengan teratur, aman, dan nyaman hanya dengan satu sentuhan.</p>
-            <a href="../signup/register.blade.php"><button class="btnBewarna" style="height: 40px; width: 200px; font-size: 16px" type="button">Coba Sekarang</button></a>
+            <a href="/register"><button class="btnBewarna" style="height: 40px; width: 200px; font-size: 16px" type="button">Coba Sekarang</button></a>
           </div>
           <div class="col animate__animated animate__fadeInRight">
-            <img src="../public/assets/rafiki.svg" alt="" style="height: 547.65px; width: 100%" class="illustrasi" />
+            <img src="{{asset('assets/rafiki.svg')}}" alt="" style="height: 547.65px; width: 100%" class="illustrasi" />
           </div>
         </div>
       </div>
@@ -63,9 +63,9 @@
     <div id="tujuan" style="background-color: #f7f8fc; padding: 110px 60px">
       <div class="container" style="padding: 0 200px;">
         <div class="row align-items-center justify-content-center">
-          <img src="../public/assets/Group 1000003576.svg" alt="" style="height: 100%; width: 928px;" class="illustrasi" />
+          <img src="{{asset('assets/Group 1000003576.svg')}}" alt="" style="height: 100%; width: 928px;" class="illustrasi" />
           <h1 class="fw-semibold text-center">Membantu pembukuan secara <span style="color: #0052e8">cepat dan tepat</span></h1>
-          <p class="fw-light text-muted text-center">Fitur - fitur yang kami sediakan dapat membantu Anda untuk mencatat semua aktivitas seperti transaksi ataupun restok barang dengan sangat cepat dengan minim error.</p>
+          <p class="fw-light text-muted text-center">Fitur - fitur yang kami sediakan dapat membantu Anda untuk mencatat semua aktivitas seperti transaksi ataupun restock barang dengan sangat cepat dengan minim error.</p>
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
       <div id="fitur" style="margin-bottom: 110px; margin-top: 50px">
         <div class="row align-items-center">
           <div class="col">
-            <img src="../public/assets/rafiki2.svg" alt="" style="height: 547.65px; width: 100%" class="illustrasi"/>
+            <img src="{{asset('assets/rafiki2.svg')}}" alt="" style="height: 547.65px; width: 100%" class="illustrasi"/>
           </div>
           <div class="col">
             <h1 class="fw-semibold">Pendataan <span style="color: #0052e8">transaksi</span> hanya dengan satu sentuhan</h1>
@@ -92,7 +92,7 @@
             <p class="fw-light text-muted">Dengan OkeKasir, pendataan restok barang menjadi lebih mudah untuk diatur yang dapat mencegah kesalahan pembelian restok barang.</p>
           </div>
           <div class="col">
-            <img src="../public/assets/rafiki3.svg" alt="" style="height: 581.79px; width: 100%" class="illustrasi" />
+            <img src="{{asset('assets/rafiki3.svg')}}" alt="" style="height: 581.79px; width: 100%" class="illustrasi" />
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@
       <div class="content" style="margin-bottom: 110px; margin-top: 50px">
         <div class="row align-items-center">
           <div class="col">
-            <img src="../public/assets/rafiki4.svg" alt="" style="height: 547.65px; width: 100%" class="illustrasi"/>
+            <img src="{{asset('assets/rafiki4.svg')}}" alt="" style="height: 547.65px; width: 100%" class="illustrasi"/>
           </div>
           <div class="col">
             <h1 class="fw-semibold">Dapat <span style="color: #0052e8">mencatat progress</span> pekerjaan yang berlangsung</h1>
@@ -117,10 +117,10 @@
         <div class="row align-items-center justify-content-center">
           <div class="col">
             <h1 class="fw-semibold">Yuk segera gunakan <span style="color: #0052e8">OkeKasir</span> pada perusahaanmu!</h1>
-            <a href="../signup/register.blade.php"><button class="btnBewarna" style="height: 40px; width: 200px; font-size: 16px; margin-top: 20px" type="button">Coba Sekarang</button></a>
+            <a href="/register"><button class="btnBewarna" style="height: 40px; width: 200px; font-size: 16px; margin-top: 20px" type="button">Coba Sekarang</button></a>
           </div>
           <div class="col">
-            <img src="../public/assets/rafiki5.svg" alt="" style="height: 512.51px; width: 100%" class="illustrasi"/>
+            <img src="{{asset('assets/rafiki5.svg')}}" alt="" style="height: 512.51px; width: 100%" class="illustrasi"/>
           </div>
         </div>
       </div>
@@ -130,8 +130,8 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-auto me-auto-scroll">
-            <a href="LandingPage.html">
-              <img src="../public/assets/logo 2.png" alt="OkeKasir" class="logo" width="170px" height="100%" />
+            <a href="/">
+              <img src="{{asset('assets/logo 2.png')}}" alt="OkeKasir" class="logo" width="170px" height="100%" />
             </a>
           </div>
           <div class="col">

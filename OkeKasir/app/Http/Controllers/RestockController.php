@@ -27,9 +27,11 @@ class RestockController extends Controller
         return view('restock_detail', ['restocks'=>$restocks, 'items'=>$items, 'itemcategories'=>$itemcategories]);
     }
     function addbillrestock(Request $request){
-        $datas = $request->all();
+        $validate = $request->validate([
+            'staffname'=>'required'
+        ]);
         $insert = RestockHeader::create([
-            'staffname'=>$request->staffname,
+            'staffname'=>$validate['staffname'],
             'status'=>"undone"
         ]);
         return redirect('/addbillrestock/'.$insert->id);
@@ -48,18 +50,16 @@ class RestockController extends Controller
             'id_produk' => 'required|integer',
             'qty' => 'required|integer'
         ]);
+
         $restock = new RestockDetail();
         $restock->itemid = $validate['id_produk'];
         $restock->restockquantity = $validate['qty'];
-        // + qty ke item
         $restock->restock_id = $id;
-       
         $restock->save();
         return redirect('/addrestock/'.$id);
     }
     // success restock
     function saverestock(Request $request, $id){
-        $datas = $request->all();
         $restocks = RestockHeader::find($id);
         $restocks->update([
             'status'=>"done"
@@ -70,7 +70,6 @@ class RestockController extends Controller
     function deleterestockitem($id, $restock_id)
     {
         $transaction = RestockDetail::find($id)->delete();
-        // - qty di item
         return redirect('/addrestock/'.$restock_id);
     }
 

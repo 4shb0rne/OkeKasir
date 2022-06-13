@@ -21,7 +21,7 @@ use App\Models\TransactionDetail;
 */
 
 Route::get('/', function () {
-    return view('layouts/master');
+    return view('index');
 });
 Route::get('/login', [UserController::class, 'loginpage']);
 Route::get('/register', [UserController::class, 'registerpage']);

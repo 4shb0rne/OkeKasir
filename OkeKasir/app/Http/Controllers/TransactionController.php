@@ -30,10 +30,16 @@ class TransactionController extends Controller
     {
         $datas = $request->all();
         $user = Auth::user()->id;
+
+        $validate = $request->validate([
+            'customername' => 'required',
+            'staffname' => 'required'
+        ]);
+
         $insert = TransactionHeader::create([
             'userid' => $user,
-            'customername'=>$request->customername,
-            'staffname'=>$request->staffname,
+            'customername'=>$validate['customername'],
+            'staffname'=>$validate['staffname'],
             'status'=>"unpaid"
         ]);
         foreach($datas["itemid"] as $index=>$data){
