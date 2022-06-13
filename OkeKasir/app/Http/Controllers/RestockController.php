@@ -62,12 +62,12 @@ class RestockController extends Controller
     function saverestock(Request $request, $id){
         $restocks = RestockHeader::find($id)->get();
         $restocksdetail = RestockDetail::find($id)->get();
-        $items = RestockDetail::query()->where('restock_id', 'LIKE', $id)->item;
+        $items = DB::table('restock_details')->join('items', 'restock_details.itemid', '=', 'items.id')->where('restock_id', 'LIKE', $id)->get();
         $restocks->update([
             'status'=>"done"
         ]);
         foreach($items as $item){
-            $item->itemquantity = $item->itemquantity+$restocksdetail::find($item->id);
+            $item->itemquantity = $item->itemquantity+$restocksdetail::find($item->itemid);
         }
         return redirect('/stok');
     }
