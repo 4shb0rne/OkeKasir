@@ -21,10 +21,10 @@ class TransactionController extends Controller
     }
     function openaddtransaction()
     {
+        // return view('transaksi_save');
         $user = Auth::user()->id;
         $transactions = TransactionHeader::query()->where('status', 'LIKE', 'unpaid')->where('userid', 'LIKE', $user)->get();
-        $items = TransactionDetail::all();
-        return view('transaksi_header', ['transactions'=>$transactions, 'items'=>$items]);
+        return view('transaksi_header', ['transactions'=>$transactions]);
     }
     function addtransaction(Request $request)
     {
@@ -49,7 +49,10 @@ class TransactionController extends Controller
                     'itemid'=>$data,
                     'transactionquantity'=>$datas["qty"][$index]
                 ]);
-                
+                $item = Item::find($data);
+                Item::find($data)->update([
+                    'itemquantity'=> $item->itemquantity-$datas["qty"][$index]
+                ]);
             }
         }
         return redirect('/cart');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\RestockHeader;
 use App\Models\RestockDetail;
+use App\Models\Item;
 use App\Models\ItemCategories;
 use Illuminate\Http\Request;
 
@@ -60,15 +61,18 @@ class RestockController extends Controller
     }
     // success restock
     function saverestock(Request $request, $id){
-        $restocks = RestockHeader::find($id)->get();
-        $restocksdetail = RestockDetail::find($id)->get();
-        // $items = DB::table('restock_details')->join('items', 'restock_details.itemid', '=', 'items.id')->where('restock_id', 'LIKE', $id)->get();
-        // $restocks->update([
-        //     'status'=>"done"
-        // ]);
-        // foreach($items as $item){
-        //     $item->itemquantity = $item->itemquantity+$restocksdetail::find($item->itemid);
-        // }
+        $restocks = RestockHeader::find($id);
+        $items = DB::table('restock_details')->join('items', 'restock_details.itemid', '=', 'items.id')
+        ->where('restock_id', 'LIKE', $id)->get();
+        $restocks->update([
+            'status'=>"done"
+        ]);
+        foreach($items as $item){
+            $it = Item::find($item->itemid);
+            $it->update([
+                'itemquantity' => $item->restockquantity+$it->itemquantity
+            ]);
+        }
         return redirect('/stok');
     }
 

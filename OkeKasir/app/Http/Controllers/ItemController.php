@@ -59,10 +59,10 @@ class ItemController extends Controller
         $item->brutoprice = $validate['bruto'];
         $item->nettoprice = $validate['netto'];
         $item->itemquantity = $validate['qty'];
-        $item->itempicture = $validate['image'];
         $file = $request->file('image');
         $originalname = $file->getClientOriginalName();
-        $path = $file->storeAs('public/Assets/', $originalname);
+        $path = $file->storeAs('Assets', $originalname);
+        $item->itempicture = $path;
         $item->save();
         return redirect('/menu');
     }
