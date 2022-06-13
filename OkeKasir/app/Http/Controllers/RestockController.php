@@ -60,10 +60,15 @@ class RestockController extends Controller
     }
     // success restock
     function saverestock(Request $request, $id){
-        $restocks = RestockHeader::find($id);
+        $restocks = RestockHeader::find($id)->get();
+        $restocksdetail = RestockDetail::find($id)->get();
+        $items = RestockHeader::find($id)->restock_detail->item->get();
         $restocks->update([
             'status'=>"done"
         ]);
+        foreach($items as $item){
+            $item->itemquantity = $item->itemquantity+$restocksdetail::find($item->id);
+        }
         return redirect('/stok');
     }
 
