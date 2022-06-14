@@ -15,7 +15,11 @@
     integrity="sha512-YSdqvJoZr83hj76AIVdOcvLWYMWzy6sJyIMic2aQz5kh2bPTd9dzY3NtdeEAzPp/PhgZqr4aJObB3ym/vsItMg=="
     crossorigin="anonymous"></script>
     <!-- {{-- css --}} -->
+    @production
+    <link rel="stylesheet" href="{{secure_asset('css/style.css')}}">
+    @else
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    @endproduction
     <!-- {{-- QuilJs CSS --}} -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>

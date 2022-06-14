@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OkeKasir - Landing Page</title>
+    @production
+    <link rel="stylesheet" href="{{secure_asset('css/style.css')}}">
+    <script src="{{secure_asset('js/jquery.min.js')}}"></script>
+    <script src="{{secure_asset('js/script.js')}}"></script>
+    @else
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <script src="../public/js/jquery.min.js"></script>
-    <script src="../public/js/script.js"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
+    @endproduction
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
