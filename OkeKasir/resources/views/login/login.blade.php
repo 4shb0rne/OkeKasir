@@ -23,16 +23,18 @@
 
 </head>
 <body>
+  <img src="{{asset('assets/background.jpeg')}}" alt="" class="background">
+  
   <main class="form-login position-absolute top-50 start-50 translate-middle">
+    <center>
+      <img src="{{ asset('assets/logo 2.png') }}" alt="Logo" width="300px">
+    </center>
     <form action="/login" method="POST" enctype="multipart/form-data">
       @csrf
-      <center>
-          <img src="{{ asset('assets/Logo.png') }}" alt="Logo" width="30px">
-      </center>
       <h1 class="h3 m-3 fw-normal text-center font-weight-bold">Log in</h1>
       <div class="mb-3">
         <label for="InputEmail" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="InputEmail" placeholder="sherlyphangestu@example.com" name="useremail">
+        <input type="email" class="form-control" id="InputEmail" placeholder="xxxx@example.com" name="useremail">
       </div>
       <div class="mb-3">
         <label for="InputPassword" class="form-label">Password</label>

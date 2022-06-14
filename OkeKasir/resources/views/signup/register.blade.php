@@ -23,16 +23,17 @@
 
 </head>
 <body>
+  <img src="{{asset('assets/background.jpeg')}}" alt="" class="background">
   <main class="form-login position-absolute top-50 start-50 translate-middle">
     <form action="/register" method="POST" enctype="multipart/form-data">
         @csrf
-      <center>
-          <img src="{{ asset('assets/Logo.png') }}" alt="Logo" width="30px">
-      </center>
+        <center>
+          <img src="{{ asset('assets/logo 2.png') }}" alt="Logo" width="300px">
+        </center>
       <h1 class="h3 m-3 fw-normal text-center font-weight-bold">Sign up</h1>
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" name="username" id="username" class="form-control @error("username") is-invalid @enderror"  placeholder="sherlyphangestu" required value="{{ old("username") }}">
+        <input type="text" name="username" id="username" class="form-control @error("username") is-invalid @enderror"  placeholder="Enter your name" required value="{{ old("username") }}">
         @error ("username")
         <div class="invalid-feedback">
             {{ $message }}
@@ -41,7 +42,7 @@
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" name="useremail" id="email"  class="form-control @error("email") is-invalid @enderror" placeholder="sherlyphangestu@example.com" required value="{{ old("email") }}">
+        <input type="email" name="useremail" id="email"  class="form-control @error("email") is-invalid @enderror" placeholder="xxxx@example.com" required value="{{ old("email") }}">
         @error ("email")
         <div class="invalid-feedback">
             {{ $message }}

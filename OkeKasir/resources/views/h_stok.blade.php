@@ -7,16 +7,7 @@ active
 @section('content')
 <div class="containers">
     <div class="top mb-4">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="">
-                <select class="custom-select bg-dark text-white">
-                    <option selected>Kategori</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            
+        <div class="d-flex justify-content-center">       
             <div class="">
                 <nav class="navbar">
                     <form class="form-inline">
