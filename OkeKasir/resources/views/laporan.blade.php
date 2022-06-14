@@ -9,12 +9,12 @@ active
     <div class="top mb-4">
         <div class="d-flex align-items-center justify-content-between">
             <div class="">
-                <select class="custom-select bg-dark text-white">
+                {{-- <select class="custom-select bg-dark text-white">
                     <option selected>Kategori</option>
                     <option value="1">Hari</option>
                     <option value="2">Bulan</option>
                     <option value="3">Tahun</option>
-                </select>
+                </select> --}}
             </div>
             <div class="">
                 <nav class="navbar">
