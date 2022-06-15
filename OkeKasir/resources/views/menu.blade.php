@@ -63,7 +63,7 @@ active
         @foreach($items as $item)
         <div class="row p-2 item-row">
             <div class="col-1">
-                <img src={{ asset('/storage/'.$item->itempicture)}} alt="" width="50px">
+                <img src="{{ asset('storage/Assets/'.$item->itempicture) }}" alt="" width="50px">
             </div>
             <div class="col-2">
                 {{ $item->itemname }}

@@ -7,7 +7,7 @@ use App\Models\ItemCategories;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 class ItemController extends Controller
 {
     function openaddcategory()
@@ -61,8 +61,8 @@ class ItemController extends Controller
         $item->itemquantity = $validate['qty'];
         $file = $request->file('image');
         $originalname = $file->getClientOriginalName();
-        $path = $file->storeAs('Assets', $originalname);
-        $item->itempicture = $path;
+        $path = $file->storeAs('public/Assets/', $originalname);
+        $item->itempicture = $originalname;
         $item->save();
         return redirect('/menu');
     }
