@@ -7,7 +7,7 @@ use App\Models\RestockDetail;
 use App\Models\Item;
 use App\Models\ItemCategories;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class RestockController extends Controller
 {
     function openrestock()
@@ -17,7 +17,9 @@ class RestockController extends Controller
         //             ->join('items','restock_details.itemid','=','id')
         //             ->select('restock_headers.staffname as headers', 'restock_details.* as details', 'items.itemname as items');     
         // return view('restock',['restocks'=>$restocks]);
-        $restocks = RestockHeader::query()->where('status', 'LIKE', 'undone')->get();
+        $user = Auth::user()->id;
+        $restocks = RestockHeader::query()->where('status', 'LIKE', 'undone')
+        ->where('userid', 'LIKE', $user)->get();
         $items = RestockDetail::all();
         return view('restock', ['restocks'=>$restocks, 'items'=>$items]);
     }
@@ -51,9 +53,10 @@ class RestockController extends Controller
             'id_produk' => 'required|integer',
             'qty' => 'required|integer'
         ]);
-
+        $user = Auth::user()->id;
         $restock = new RestockDetail();
         $restock->itemid = $validate['id_produk'];
+        $restock->userid = $user;
         $restock->restockquantity = $validate['qty'];
         $restock->restock_id = $id;
         $restock->save();
