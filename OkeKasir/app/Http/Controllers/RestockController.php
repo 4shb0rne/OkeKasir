@@ -33,9 +33,11 @@ class RestockController extends Controller
         $validate = $request->validate([
             'staffname'=>'required'
         ]);
+        $user = Auth::user()->id;
         $insert = RestockHeader::create([
             'staffname'=>$validate['staffname'],
-            'status'=>"undone"
+            'status'=>"undone",
+            'userid'=>$user
         ]);
         return redirect('/addbillrestock/'.$insert->id);
     }
