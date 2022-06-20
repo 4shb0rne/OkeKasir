@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class ScheduleController extends Controller
 {
     function opencatatan(){
-        $notes = Schedule::all();
+        $user = Auth::user()->id;
+        $notes = Schedule::query()->where('userid', 'LIKE', $user)->get();
         return view('catatan', ['notes'=>$notes]);
     }
 
