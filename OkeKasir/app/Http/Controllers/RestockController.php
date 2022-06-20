@@ -55,10 +55,8 @@ class RestockController extends Controller
             'id_produk' => 'required|integer',
             'qty' => 'required|integer'
         ]);
-        $user = Auth::user()->id;
         $restock = new RestockDetail();
         $restock->itemid = $validate['id_produk'];
-        $restock->userid = $user;
         $restock->restockquantity = $validate['qty'];
         $restock->restock_id = $id;
         $restock->save();
