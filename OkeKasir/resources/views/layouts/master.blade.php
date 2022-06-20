@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-4">
                             <center>
-                                <img src="{{ asset('assets/logo 2.png') }}" alt="Logo" width="30px">
+                                <img src="{{ asset('assets/logo 2.png') }}" alt="Logo" width="140px">
                                 {{-- <span>Nama Aplikasi</span> --}}
                             </center>
                         </div>
