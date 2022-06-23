@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 class ItemController extends Controller
 {
     function openaddcategory()
@@ -18,7 +19,7 @@ class ItemController extends Controller
     {
         $user = Auth::user()->id;
         $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
-        return view('/editkategori', ['itemcategories'=>$itemcategories]);
+        return view('/editkategori', ['itemcategories' => $itemcategories]);
     }
     function deleteitemcategory($id)
     {
@@ -30,13 +31,13 @@ class ItemController extends Controller
         $user = Auth::user()->id;
         $items = Item::query()->where('userid', 'LIKE', $user)->get();
         $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
-        return view('/menu', ['items'=>$items, 'itemcategories'=>$itemcategories]);
+        return view('/menu', ['items' => $items, 'itemcategories' => $itemcategories]);
     }
     function openaddmenu()
     {
         $user = Auth::user()->id;
         $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
-        return view('/addmenu', ['itemcategories'=>$itemcategories]);
+        return view('/addmenu', ['itemcategories' => $itemcategories]);
     }
 
     function additem(Request $request)
@@ -66,7 +67,7 @@ class ItemController extends Controller
         $item->save();
         return redirect('/menu');
     }
-    
+
     function additemcategory(Request $request)
     {
         $validate = $request->validate([
@@ -83,13 +84,13 @@ class ItemController extends Controller
         $user = Auth::user()->id;
         $item = Item::find($id);
         $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
-        return view('editmenu', ['item'=>$item, 'itemcategories'=>$itemcategories]);
+        return view('editmenu', ['item' => $item, 'itemcategories' => $itemcategories]);
     }
 
-    function edititem(Request $request,$id)
+    function edititem(Request $request, $id)
     {
         $datas = $request->all();
-        $items = Item::where('id',"=",$id)->update([
+        $items = Item::where('id', "=", $id)->update([
             'itemname' => $request->nama_produk,
             'itemdescription' => $request->deskripsi,
         ]);
@@ -105,35 +106,32 @@ class ItemController extends Controller
     {
         $user = Auth::user()->id;
         $items = Item::query();
-        if($request->search)
-        {
-            $items = $items->where('itemname', 'like', '%'.$request->search.'%')->orWhere('userid', 'like', $user)
-            ->orwherehas('item_categories', function(Builder $query) use($request){
-                $query->where('itemcategoryname', 'like', '%'.$request->search.'%');
-            })->get();
-        } else{
+        if ($request->search) {
+            $items = $items->where('itemname', 'LIKE', '%' . $request->search . '%')->orWhere('userid', 'LIKE', $user)
+                ->orwherehas('item_categories', function (Builder $query) use ($request) {
+                    $query->where('itemcategoryname', 'LIKE', '%' . $request->search . '%');
+                })->get();
+        } else {
             $items = Item::all();
         }
         $itemcategories = ItemCategories::query()->where('userid', 'LIKE', $user)->get();
-        return view('/menu', ['items'=>$items, 'itemcategories'=>$itemcategories]);
+        return view('/menu', ['items' => $items, 'itemcategories' => $itemcategories]);
     }
 
     public function filtercategories(Request $request)
-    {   
+    {
         $item = Item::query()->with("item_categories");
         $itemcategories = ItemCategories::all();
         $user = Auth::user()->id;
-        if($request->ajax() && $request->category == 'Kategori')
-        {
+        if ($request->ajax() && $request->category == 'Kategori') {
             return response()->json(['items' => $item->where('userid', $user)->get()]);
         }
-        if($request->ajax() && $request->category != null)
-        {
-            return response()->json(['items' => $item->where('itemcategoryid',$request->category)->get()]);
+        if ($request->ajax() && $request->category != null) {
+            return response()->json(['items' => $item->where('itemcategoryid', $request->category)->get()]);
         }
-        
- 
-        return view('/menu',[
+
+
+        return view('/menu', [
             'items' => $item->get(), 'itemcategories' => $itemcategories
         ]);
     }
